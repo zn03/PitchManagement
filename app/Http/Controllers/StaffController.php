@@ -63,12 +63,11 @@ class StaffController extends Controller
      * @param  \App\Models\Staff  $staff
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function edit($staff)
+    public function edit(Staff $staff)
     {
-        $staffs = Staff::find($staff);
-            return view('Admin.staffs.edit', [
-                'staffs' => $staffs,
-            ]);
+        return view('Admin.staffs.edit', [
+            'staff' => $staff,
+        ]);
     }
 
     /**
@@ -80,9 +79,7 @@ class StaffController extends Controller
      */
     public function update(UpdateStaffRequest $request, Staff $staff)
     {
-
         $staff->update($request->all());
-
         return Redirect::route('staffs.index');
     }
 

@@ -529,34 +529,31 @@
 <div class="container-fluid al">
     <div id="clock"></div>
     <Br>
-
-
-
     <div class="container-fluid">
     </div>
     <div class="container">
-        <form action="{{ route('staffs.update', $staffs->id)}}" method="post" enctype="multipart/form-data" >
+        <form action="{{ route('staffs.update', $staff)}}" method="post" enctype="multipart/form-data" >
             @csrf
             @method('PUT')
             <div>
                 <label  class="form-label">Tên Nhân Viên:</label>
-                <input type="text" class="form-control" id="staff_name" name="staff_name"  value="{{$staffs->id}}">
+                <input type="text" class="form-control" id="staff_name" name="staff_name"  value="{{$staff->staff_name}}">
             </div>
             <div>
                 <label  class="form-label">Số Điện Thoại: </label>
-                <input type="text" class="form-control" id="staff_phone" name="staff_phone" value="{{$staffs->staff_phone}}" >
+                <input type="text" class="form-control" id="staff_phone" name="staff_phone" value="{{$staff->staff_phone}}" >
             </div>
             <div>
-                <label  class="form-label"> Địa Chỉ </label>
-                <input type="text" class="form-control" id="staff_address" name="staff_address" value="{{$staffs->staff_address}}" >
+                <label  class="form-label"> Địa Chỉ: </label>
+                <input type="text" class="form-control" id="staff_address" name="staff_address" value="{{$staff->staff_address}}" >
             </div>
             <div>
                 <label  class="form-label">Email: </label>
-                <input type="email" class="form-control" id="email" name="email" value="{{$staffs->email}}" >
+                <input type="email" class="form-control" id="email" name="email" value="{{$staff->email}}" >
             </div>
             <div class="mb-3">
                 <label  class="form-label">Mật khẩu: </label>
-                <input type="password" id="password" name="password" class="form-control" value="{{$staffs->password}}">
+                <input type="password" id="password" name="password" class="form-control" value="{{$staff->password}}">
             </div>
             <button type="submit" class="btn btn-primary">Sửa</button>
         </form>

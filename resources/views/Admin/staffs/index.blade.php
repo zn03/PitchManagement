@@ -561,8 +561,6 @@
             <tbody>
             @foreach($staffs as $staff)
                 <tr>
-
-
                     <td>
                         {{ $staff->id }}
                     </td>
@@ -579,13 +577,15 @@
                         {{ $staff->email }}
                     </td>
                     <td>
-                        <a href="{{ route('staffs.edit',$staff -> id) }}">
-                                    Sửa
+                        <a href="{{ route('staffs.edit',$staff) }}" title="Sửa" data-toggle="tooltip">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
                         </a>
-                        <form method="post" action="{{ route('staffs.destroy', $staff ->id) }}">
+                        <form method="post" action="{{ route('staffs.destroy', $staff)}}">
                             @csrf
                             @method('DELETE')
-                            <button class="del-btn">Xóa</button>
+                            <button class="del-btn" title="Xóa" data-toggle="tooltip">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            </button>
                         </form>
                     </td>
                     @endforeach

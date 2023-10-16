@@ -538,7 +538,7 @@
             @method('PUT')
             <div>
                 <label  class="form-label">Thời Gian Bắt Đầu: </label>
-                <input type="time" class="form-control" id="timeline_start" name="timeline_start"  value="{{$timeline->timeline_start}}">
+                <input type="time" class="form-control" id="timeline_start" name="timeline_start"  value="{{$timeline->timeline_start}} ">
             </div>
             <div>
                 <label  class="form-label">Thời Gian Kết Thúc:  </label>

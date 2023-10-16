@@ -86,10 +86,12 @@ class PitchTypeController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\PitchType  $pitchType
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(PitchType $pitchType)
     {
-        //
+        $pitchType->delete();
+        // Quay về trang danh sách
+        return Redirect::route('pitch_types.index');
     }
 }
