@@ -15,7 +15,7 @@ class PitchController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**

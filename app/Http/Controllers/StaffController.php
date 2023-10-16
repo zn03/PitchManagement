@@ -43,7 +43,6 @@ class StaffController extends Controller
     public function store(StoreStaffRequest $request)
     {
         Staff::create($request->all());
-
         return Redirect::route('staffs.index');
     }
 
@@ -62,12 +61,13 @@ class StaffController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Staff  $staff
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function edit(Staff $staff)
+    public function edit($staff)
     {
+        $staffs = Staff::find($staff);
             return view('Admin.staffs.edit', [
-                'staff' => $staff,
+                'staffs' => $staffs,
             ]);
     }
 
@@ -76,11 +76,12 @@ class StaffController extends Controller
      *
      * @param  \App\Http\Requests\UpdateStaffRequest  $request
      * @param  \App\Models\Staff  $staff
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(UpdateStaffRequest $request, Staff $staff)
     {
-        $staff->update( $request->all());
+
+        $staff->update($request->all());
 
         return Redirect::route('staffs.index');
     }
@@ -93,6 +94,7 @@ class StaffController extends Controller
      */
     public function destroy(Staff $staff)
     {
-        //
+            $staff->delete();
+            return Redirect::route('staffs.index');
     }
 }

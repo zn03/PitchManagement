@@ -511,7 +511,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="{{route('bookings.index')}}" data-toggle="tooltip" data-placement="bottom" title="LỊCH ĐẶT SÂN">LỊCH ĐẶT SÂN</a></li>
                 <li><a href="{{route('customers.index')}}" data-toggle="tooltip" data-placement="bottom" title="KHÁCH HÀNG">KHÁCH HÀNG</a></li>
-                <li class="active"><a href="" data-toggle="tooltip" data-placement="bottom" title="NHÂN VIÊN">NHÂN VIÊN</a></li>
+                <li class="active"><a href="{{route('staffs.index')}}" data-toggle="tooltip" data-placement="bottom" title="NHÂN VIÊN">NHÂN VIÊN</a></li>
                 <li><a href="{{route('timelines.index')}}" data-toggle="tooltip" data-placement="bottom" title="THỜI GIAN">THỜI GIAN</a></li>
                 <li><a href="{{route('pitch_types.index')}}" data-toggle="tooltip" data-placement="bottom" title="LOẠI SÂN">LOẠI SÂN</a></li>
                 <li><a href="{{route('pitches.index')}}" data-toggle="tooltip" data-placement="bottom" title="SÂN">SÂN</a></li>
@@ -547,7 +547,7 @@
 
     </div>
     <div class="panel-body">
-        <table class="table table-striped">
+        <table class="table table-striped table-bordered">
             <thead>
             <tr class="ex">
                 <th width="auto">ID</th>
@@ -559,9 +559,10 @@
             </tr>
             </thead>
             <tbody>
-
+            @foreach($staffs as $staff)
                 <tr>
-                    @foreach($staffs as $staff)
+
+
                     <td>
                         {{ $staff->id }}
                     </td>
@@ -578,9 +579,14 @@
                         {{ $staff->email }}
                     </td>
                     <td>
-                        <a href="{{ route('staffs.edit', $staff) }}" class="edit" title="Sửa" data-toggle="tooltip"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-
-                        <a class="delete" title="Xóa" data-toggle="tooltip"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                        <a href="{{ route('staffs.edit',$staff -> id) }}">
+                                    Sửa
+                        </a>
+                        <form method="post" action="{{ route('staffs.destroy', $staff ->id) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button class="del-btn">Xóa</button>
+                        </form>
                     </td>
                     @endforeach
                 </tr>

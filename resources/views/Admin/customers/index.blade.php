@@ -511,13 +511,13 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="{{route('bookings.index')}}" data-toggle="tooltip" data-placement="bottom" title="LỊCH ĐẶT SÂN">LỊCH ĐẶT SÂN</a></li>
                 <li class="active"><a href="{{route('customers.index')}}" data-toggle="tooltip" data-placement="bottom" title="KHÁCH HÀNG">KHÁCH HÀNG</a></li>
-                <li ><a href="staffs.index" data-toggle="tooltip" data-placement="bottom" title="NHÂN VIÊN">NHÂN VIÊN</a></li>
+                <li ><a href="{{route('staffs.index')}}" data-toggle="tooltip" data-placement="bottom" title="NHÂN VIÊN">NHÂN VIÊN</a></li>
                 <li><a href="{{route('timelines.index')}}" data-toggle="tooltip" data-placement="bottom" title="THỜI GIAN">THỜI GIAN</a></li>
                 <li><a href="{{route('pitch_types.index')}}" data-toggle="tooltip" data-placement="bottom" title="LOẠI SÂN">LOẠI SÂN</a></li>
                 <li><a href="{{route('pitches.index')}}" data-toggle="tooltip" data-placement="bottom" title="SÂN">SÂN</a></li>
                 <li><a  data-toggle="tooltip" data-placement="bottom" title="TÀI KHOẢN">Tài Khoản</a>
                     <ul class="dropdown">
-                        <li><a href="/index.html" data-toggle="tooltip" data-placement="bottom"
+                        <li><a href="" data-toggle="tooltip" data-placement="bottom"
                                title="ĐĂNG XUẤT"><b>Đăng xuất <i class="fas fa-sign-out-alt"></i></b></a></li>
                     </ul>
                 </li>
@@ -528,7 +528,7 @@
 <div class="container-fluid al">
     <div id="clock"></div>
     <Br>
-    <p class="timkiemkhachhang"><b>TÌM KIẾM KHÁCH HANGF:</b></p><Br><Br>
+    <p class="timkiemkhachhang"><b>TÌM KIẾM KHÁCH HÀNG:</b></p><Br><Br>
     <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Nhập tên khách hàng cần tìm...">
     <i class="fa fa-search" aria-hidden="true"></i>
 
@@ -539,7 +539,7 @@
 
     </div>
     <div class="panel-body">
-        <table class="table table-striped">
+        <table class="table table-striped table-bordered">
             <thead>
             <tr class="ex">
                 <th width="auto">ID</th>
@@ -565,14 +565,15 @@
                         {{ $customer->customer_nameclub }}
                     </td>
                     <td>
-                        <form action="{{ route('customers.destroy', $customer) }}" method="post">
+                        <form method="post" action="{{ route('customers.destroy', $customer) }}" >
                             @csrf
                             @method('DELETE')
                             <button><a class="delete" title="Xóa" data-toggle="tooltip"><i class="fa fa-trash-o"></i></a></button>
                         </form>
                     </td>
+                    @endforeach
             </tr>
-                @endforeach
+
             </tbody>
 
         </table>
