@@ -5,17 +5,26 @@ namespace App\Http\Controllers;
 use App\Models\Booking;
 use App\Http\Requests\StoreBookingRequest;
 use App\Http\Requests\UpdateBookingRequest;
+use App\Models\Customer;
+use App\Models\Pitch;
 
 class BookingController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
-        //
+
+        $bookings = Booking::with('staffs','timelines','customers')->get();
+        $pitches = Pitch::class;
+
+        return view('Admin.bookings.index', [
+            'bookings' => $bookings,
+            'pitches' => $pitches,
+        ]);
     }
 
     /**

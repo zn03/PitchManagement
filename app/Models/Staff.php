@@ -12,4 +12,8 @@ class Staff extends Model
     protected $primaryKey = 'id';
      public $timestamps = false;
     protected $fillable = ['staff_name', 'email', 'password', 'staff_phone', 'staff_address'];
+
+    public function bookings(){
+        return $this->hasMany(Booking::class);
+    }
 }
