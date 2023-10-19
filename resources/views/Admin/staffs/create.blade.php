@@ -511,7 +511,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="{{route('bookings.index')}}" data-toggle="tooltip" data-placement="bottom" title="LỊCH ĐẶT SÂN">LỊCH ĐẶT SÂN</a></li>
                 <li><a href="{{route('customers.index')}}" data-toggle="tooltip" data-placement="bottom" title="KHÁCH HÀNG">KHÁCH HÀNG</a></li>
-                <li class="active"><a href="" data-toggle="tooltip" data-placement="bottom" title="NHÂN VIÊN">NHÂN VIÊN</a></li>
+                <li class="active"><a href="{{route('staffs.index')}}" data-toggle="tooltip" data-placement="bottom" title="NHÂN VIÊN">NHÂN VIÊN</a></li>
                 <li><a href="{{route('timelines.index')}}" data-toggle="tooltip" data-placement="bottom" title="THỜI GIAN">THỜI GIAN</a></li>
                 <li><a href="{{route('pitch_types.index')}}" data-toggle="tooltip" data-placement="bottom" title="LOẠI SÂN">LOẠI SÂN</a></li>
                 <li><a href="{{route('pitches.index')}}" data-toggle="tooltip" data-placement="bottom" title="SÂN">SÂN</a></li>
@@ -537,8 +537,6 @@
         </div>
 
     </div>
-
-
             <div class="container-fluid">
                 <div id="toolbar">
                     <h1 align="center">Thêm Nhân Viên</h1>
@@ -550,26 +548,44 @@
                     <div>
                         <label  class="form-label">Tên Nhân Viên:</label>
                         <input type="text" class="form-control" id="staff_name" name="staff_name" >
+                        @if($errors->has('staff_name'))
+                            {{$errors->first('staff_name')}}
+                        @endif
                     </div>
                     <div>
                         <label  class="form-label">Số Điện Thoại: </label>
                         <input type="text" class="form-control" id="staff_phone" name="staff_phone" >
+                        @if($errors->has('staff_phone'))
+                            {{$errors->first('staff_phone')}}
+                        @endif
                     </div>
                     <div>
                         <label  class="form-label"> Địa Chỉ </label>
                         <input type="text" class="form-control" id="staff_address" name="staff_address" >
+                        @if($errors->has('staff_phone'))
+                            {{$errors->first('staff_phone')}}
+                        @endif
                     </div>
                     <div>
                         <label  class="form-label">Email: </label>
                         <input type="email" class="form-control" id="email" name="email" >
+                        @if($errors->has('email'))
+                            {{$errors->first('email')}}
+                        @endif
                     </div>
                     <div class="mb-3">
                         <label  class="form-label">Mật khẩu: </label>
                         <input type="password" id="password" name="password" class="form-control" >
+                        @if($errors->has('password'))
+                            {{$errors->first('password')}}
+                        @endif
                     </div>
                     <div class="mb-3">
                         <label  class="form-label">Nhập lại mật khẩu: </label>
                         <input type="password" id="re_password" name="re_password" class="form-control" >
+                        @if($errors->has('re_password'))
+                            {{$errors->first('re_password')}}
+                        @endif
                     </div>
                     <button type="submit" class="btn btn-primary">Thêm Vào</button>
                 </form>

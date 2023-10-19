@@ -78,8 +78,12 @@ class PitchTypeController extends Controller
      */
     public function update(UpdatePitchTypeRequest $request, PitchType $pitchType)
     {
-        $pitchType->update($request->all());
-        return Redirect::route('pitch_types.index');
+        if ($request->validated()) {
+            $pitchType->update($request->all());
+            return Redirect::route('pitch_types.index');
+        } else {
+            return Redirect::back();
+        }
     }
 
     /**

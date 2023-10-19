@@ -61,9 +61,9 @@ Route::prefix('Admin/bookings/')->group(function(){
     Route::get('/', [\App\Http\Controllers\BookingController::class, 'index'])->name('bookings.index');
     Route::get('/create', [\App\Http\Controllers\BookingController::class, 'create'])->name('bookings.create');
     Route::post('/create', [\App\Http\Controllers\BookingController::class, 'store'])->name('bookings.store');
-    Route::get('/{bookings}/edit', [\App\Http\Controllers\BookingController::class, 'edit'])->name('bookings.edit');
-    Route::put('/{bookings}/edit', [\App\Http\Controllers\BookingController::class, 'update'])->name('bookings.update');
-    Route::delete('/{bookings}/destroy', [\App\Http\Controllers\BookingController::class, 'destroy'])->name('bookings.destroy');
+    Route::get('/{booking_id}/edit', [\App\Http\Controllers\BookingController::class, 'edit'])->name('bookings.edit');
+    Route::put('/{booking_id}/edit', [\App\Http\Controllers\BookingController::class, 'update'])->name('bookings.update');
+    Route::delete('/{booking_id}/destroy', [\App\Http\Controllers\BookingController::class, 'destroy'])->name('bookings.destroy');
 
 });
 

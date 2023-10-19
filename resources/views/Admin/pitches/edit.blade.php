@@ -481,7 +481,6 @@
                         </option>
                         @endif
                             <option value="{{$pitchType->id}}"
-
                             >
                                 {{$pitchType->pitchtype_name}}
                             </option>
@@ -499,7 +498,7 @@
                     >Còn Sân</option>
                     <option value="2"
                         @if($pitch->pitch_status == 2)
-                            {{'selected'}}
+
                         @endif
                     >Đang Sử Dụng</option>
                 </select>

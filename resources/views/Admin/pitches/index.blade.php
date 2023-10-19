@@ -571,7 +571,7 @@
                         @if($pitch->pitch_status == 1)
                             <b>Còn Sân</b>
                         @else
-                            <b>Đang Sử Dụng</b>
+                            <b>Đang Đá</b>
                         @endif
                     </td>
                     <td>

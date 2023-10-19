@@ -5,8 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\Booking;
 use App\Http\Requests\StoreBookingRequest;
 use App\Http\Requests\UpdateBookingRequest;
+use App\Models\BookingDetail;
 use App\Models\Customer;
 use App\Models\Pitch;
+use App\Models\PitchType;
+use App\Models\Staff;
+use App\Models\Timeline;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
+use Carbon\Carbon;
 
 class BookingController extends Controller
 {
@@ -17,35 +25,99 @@ class BookingController extends Controller
      */
     public function index()
     {
-
-        $bookings = Booking::with('staffs','timelines','customers')->get();
-        $pitches = Pitch::class;
-
+        $pitches = Pitch::all();
+        $bookings = DB::table('bookings')
+            ->join('booking_details', 'bookings.id', '=', 'booking_details.booking_id')
+            ->join('pitches', 'pitches.id', '=', 'booking_details.pitch_id')
+            ->join('pitch_types', 'pitch_types.id', '=', 'pitches.pitch_type_id')
+            ->join('timelines', 'timelines.id', '=', 'bookings.timeline_id')
+            ->join('customers', 'customers.id', '=', 'bookings.customer_id')
+            ->join('staffs', 'staffs.id', '=', 'bookings.staff_id')
+            ->select('bookings.*', 'booking_details.*', 'pitches.*', 'pitch_types.*', 'timelines.*', 'customers.*', 'staffs.*')
+            ->orderBy('bookings.id', 'asc')
+            ->get();
+        $formattedBookings = [];
+        foreach ($bookings as $booking) {
+            $formattedBooking = $booking;
+            $formattedBooking->booking_date = Carbon::parse($booking->booking_date)->format('d-m-Y');
+            $formattedBookings[] = $formattedBooking;
+        }
         return view('Admin.bookings.index', [
             'bookings' => $bookings,
             'pitches' => $pitches,
         ]);
     }
-
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create()
     {
-        //
+        $pitches = Pitch::all();
+        $timelines = Timeline::all();
+        $staffs = Staff::all();
+
+        return view('Admin.bookings.create', [
+            'pitches' => $pitches,
+            'timelines' => $timelines,
+            'staffs'=> $staffs,
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StoreBookingRequest  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreBookingRequest $request)
     {
-        //
+       if ($request->validated()){
+           $array = [];
+           $array = Arr::add($array, 'customer_name', $request->customer_name);
+           $array = Arr::add($array, 'customer_phone', $request->customer_phone);
+           $array = Arr::add($array, 'customer_nameclub', $request->customer_nameclub);
+           $customer = Customer::create($array);
+           $last_record = Customer::latest('id')->first()->toArray();
+
+
+           $booking = [];
+           $booking = Arr::add($booking, 'customer_id', $last_record['id']);
+           $booking = Arr::add($booking, 'staff_id', $request->staff_id);
+           $booking = Arr::add($booking, 'timeline_id', $request->timeline_id);
+           $booking = Arr::add($booking, 'booking_date', $request->booking_date);
+           $booking = Arr::add($booking, 'booking_status', $request->booking_status);
+           $booking = Arr::add($booking, 'booking_note', $request->booking_note);
+           $booking = Booking::create($booking);
+
+           $last_record_booking = Booking::latest('id')->first()->toArray();
+
+
+           $booking = Booking::join('timelines', 'timelines.id', '=', 'bookings.timeline_id')
+               ->where('bookings.id', $last_record_booking['id'])
+               ->first();
+
+           $pitch = Pitch::join('pitch_types', 'pitch_types.id', '=', 'pitches.pitch_type_id')
+               ->where('pitches.id', $request->pitch_id)
+               ->first();
+
+           if ($booking && $pitch) {
+               $result = $booking->timeline_price + $pitch->pitchtype_price;
+           } else {
+               $result = 0;
+           }
+           $bookingDetail = [];
+           $bookingDetail = Arr::add($bookingDetail, 'booking_id', $last_record_booking['id']);
+           $bookingDetail = Arr::add($bookingDetail, 'pitch_id', $request->pitch_id);
+           $bookingDetail = Arr::add($bookingDetail, 'current_price', $result);
+
+           $bookingDetail = BookingDetail::create($bookingDetail);
+           flash()->addSuccess('Thêm mới thành công');
+           return Redirect::route('bookings.index');
+
+       } else
+              return Redirect::back();
     }
 
     /**
@@ -63,11 +135,30 @@ class BookingController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Booking  $booking
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function edit(Booking $booking)
+    public function edit(Booking $booking, $booking_id)
     {
-        //
+        $timelines = Timeline::all();
+        $pitches = Pitch::all();
+        $staffs = Staff::all();
+
+        $bookings = DB::table('bookings')
+            ->join('booking_details', 'bookings.id', '=', 'booking_details.booking_id')
+            ->join('pitches', 'pitches.id', '=', 'booking_details.pitch_id')
+            ->join('pitch_types', 'pitch_types.id', '=', 'pitches.pitch_type_id')
+            ->join('timelines', 'timelines.id', '=', 'bookings.timeline_id')
+            ->join('customers', 'customers.id', '=', 'bookings.customer_id')
+            ->join('staffs', 'staffs.id', '=', 'bookings.staff_id')
+            ->select('bookings.*', 'booking_details.*', 'pitches.*', 'pitch_types.*', 'timelines.*', 'customers.*', 'staffs.*')
+            ->where('bookings.id', $booking_id)
+            ->get();
+        return view ('Admin.bookings.edit', [
+            'bookings' => $bookings,
+            'timelines'=> $timelines,
+            'pitches' => $pitches,
+            'staffs' => $staffs,
+        ]);
     }
 
     /**
@@ -75,11 +166,30 @@ class BookingController extends Controller
      *
      * @param  \App\Http\Requests\UpdateBookingRequest  $request
      * @param  \App\Models\Booking  $booking
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(UpdateBookingRequest $request, Booking $booking)
     {
-        //
+
+        $array = [];
+        $array = Arr::add($array, 'customer_name', $request->customer_name);
+        $array = Arr::add($array, 'customer_phone', $request->customer_phone);
+        $array = Arr::add($array, 'customer_nameclub', $request->customer_nameclub);
+        $customer = Customer::create($array);
+        $last_record = Customer::latest('id')->first()->toArray();
+
+        $booking = [];
+        $booking = Arr::add($booking, 'customer_id', $last_record['id']);
+        $booking = Arr::add($booking, 'staff_id', $request->staff_id);
+        $booking = Arr::add($booking, 'timeline_id', $request->timeline_id);
+        $booking = Arr::add($booking, 'booking_date', $request->booking_date);
+        $booking = Arr::add($booking, 'booking_status', $request->booking_status);
+        $booking = Arr::add($booking, 'booking_note', $request->booking_note);
+
+        $booking = Booking::where('id', $request->booking_id)->update($booking);
+
+        return Redirect::route('bookings.index');
+
     }
 
     /**
@@ -90,6 +200,6 @@ class BookingController extends Controller
      */
     public function destroy(Booking $booking)
     {
-        //
+
     }
 }

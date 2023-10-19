@@ -24,7 +24,20 @@ class StoreTimelineRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'timeline_start' => ['required'],
+            'timeline_end' => ['required'],
+            'timeline_price'=>['required','numeric','min:0'],
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'timeline_start.required' => 'Vui lòng nhập thời gian bắt đầu',
+            'timeline_end.required' => 'Vui lòng nhập thời gian kết thúc',
+            'timeline_price.required' => 'Vui lòng nhập giá sân',
+            'timeline_price.numeric' => 'Giá sân phải là số',
+            'timeline_price.min' => 'Giá sân phải lớn hơn 0',
         ];
     }
 }

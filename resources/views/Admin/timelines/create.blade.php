@@ -511,7 +511,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="{{route('bookings.index')}}" data-toggle="tooltip" data-placement="bottom" title="LỊCH ĐẶT SÂN">LỊCH ĐẶT SÂN</a></li>
                 <li><a href="{{route('customers.index')}}" data-toggle="tooltip" data-placement="bottom" title="KHÁCH HÀNG">KHÁCH HÀNG</a></li>
-                <li ><a href="" data-toggle="tooltip" data-placement="bottom" title="NHÂN VIÊN">NHÂN VIÊN</a></li>
+                <li ><a href="{{route('staffs.index')}}" data-toggle="tooltip" data-placement="bottom" title="NHÂN VIÊN">NHÂN VIÊN</a></li>
                 <li class="active"><a href="{{route('timelines.index')}}" data-toggle="tooltip" data-placement="bottom" title="THỜI GIAN">THỜI GIAN</a></li>
                 <li><a href="{{route('pitch_types.index')}}" data-toggle="tooltip" data-placement="bottom" title="LOẠI SÂN">LOẠI SÂN</a></li>
                 <li><a href="{{route('pitches.index')}}" data-toggle="tooltip" data-placement="bottom" title="SÂN">SÂN</a></li>
@@ -544,14 +544,23 @@
             <div>
                 <label  class="form-label">Thời Gian Bắt Đầu:</label>
                 <input type="time" class="form-control" id="timeline_start" name="timeline_start" >
+                @if($errors->has('timeline_start'))
+                    {{$errors->first('timeline_start')}}
+                @endif
             </div>
             <div>
                 <label  class="form-label">Thời Gian Kết Thúc:  </label>
                 <input type="time" class="form-control" id="timeline_end" name="timeline_end" >
+                @if($errors->has('timeline_end'))
+                    {{$errors->first('timeline_end')}}
+                @endif
             </div>
             <div>
                 <label  class="form-label"> Giá Tiền Theo Thời Gian: </label>
                 <input type="text" class="form-control" id="timeline_price" name="timeline_price" >
+                @if($errors->has('timeline_price'))
+                    {{$errors->first('timeline_price')}}
+                @endif
             </div>
             <button type="submit" class="btn btn-primary">Thêm Vào</button>
         </form>

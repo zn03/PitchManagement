@@ -439,7 +439,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="{{route('bookings.index')}}" data-toggle="tooltip" data-placement="bottom" title="LỊCH ĐẶT SÂN">LỊCH ĐẶT SÂN</a></li>
                 <li><a href="{{route('customers.index')}}" data-toggle="tooltip" data-placement="bottom" title="KHÁCH HÀNG">KHÁCH HÀNG</a></li>
-                <li ><a href="" data-toggle="tooltip" data-placement="bottom" title="NHÂN VIÊN">NHÂN VIÊN</a></li>
+                <li ><a href="{{route('staffs.index')}}" data-toggle="tooltip" data-placement="bottom" title="NHÂN VIÊN">NHÂN VIÊN</a></li>
                 <li ><a href="{{route('timelines.index')}}" data-toggle="tooltip" data-placement="bottom" title="THỜI GIAN">THỜI GIAN</a></li>
                 <li ><a href="{{route('pitch_types.index')}}" data-toggle="tooltip" data-placement="bottom" title="LOẠI SÂN">LOẠI SÂN</a></li>
                 <li class="active"><a href="{{route('pitches.index')}}" data-toggle="tooltip" data-placement="bottom" title="SÂN">SÂN</a></li>
@@ -470,8 +470,11 @@
         <form action="{{ route('pitches.store')}}" method="post" enctype="multipart/form-data" >
             @csrf
             <div>
-                <label  class="form-label">Sân Số  </label>
+                <label  class="form-label">Sân Số : </label>
                 <input type="text" class="form-control" id="pitch_number" name="pitch_number" >
+                @if($errors->has('pitch_number'))
+                    {{$errors->first('pitch_number')}}
+                @endif
             </div>
             <div>
                 <label  class="form-label"> Loại Sân: </label>

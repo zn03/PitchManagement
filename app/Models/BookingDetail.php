@@ -13,9 +13,9 @@ class BookingDetail extends Model
     protected $fillable = ['booking_id', 'pitch_id', 'current_price'];
 
     public function bookings(){
-        return $this->belongsTo(Booking::class);
+        return $this->belongsTo(Booking::class, 'booking_id');
     }
     public function pitches(){
-        return $this->belongsTo(Pitch::class);
+        return $this->belongsTo(Pitch::class, 'pitch_id');
     }
 }

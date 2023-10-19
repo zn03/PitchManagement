@@ -15,14 +15,12 @@ return new class extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
-            $table->string('booking_date');
-            $table->string('booking_status');
+            $table->date('booking_date');
+            $table->integer('booking_status');
             $table->text('booking_note');
             $table->foreignId('customer_id')->constrained('customers');
             $table->foreignId('staff_id')->constrained('staffs');
             $table->foreignId('timeline_id')->constrained('timelines');
-
-
         });
     }
 

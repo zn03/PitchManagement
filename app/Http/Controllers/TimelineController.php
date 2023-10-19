@@ -39,8 +39,12 @@ class TimelineController extends Controller
      */
     public function store(StoreTimelineRequest $request)
     {
-        Timeline::create($request->all());
-        return Redirect::route('timelines.index');
+        if ($request->validated()) {
+            Timeline::create($request->all());
+            return Redirect::route('timelines.index');
+        } else {
+            return Redirect::back();
+        }
     }
 
     /**

@@ -44,8 +44,13 @@ class PitchController extends Controller
      */
     public function store(StorePitchRequest $request)
     {
-        Pitch::create($request->all());
-        return Redirect::route('pitches.index');
+        if ($request->validated()) {
+            Pitch::create($request->all());
+            return Redirect::route('pitches.index');
+        } else {
+            return Redirect::back();
+        }
+
     }
 
     /**

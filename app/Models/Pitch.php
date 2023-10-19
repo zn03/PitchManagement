@@ -15,9 +15,8 @@ class Pitch extends Model
     protected $fillable = ['pitch_number', 'pitch_type_id', 'pitch_status'];
 
     public function pitchType(){
-        return $this->belongsTo(PitchType::class);
+        return $this->belongsTo(PitchType::class, 'pitch_type_id');
     }
-
     public function bookingDetail(){
         return $this->hasMany(BookingDetail::class);
     }

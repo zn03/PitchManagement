@@ -548,8 +548,10 @@
                 <th width="auto">Tên Khách Hàng</th>
                 <th width="auto">Tên Đội Bóng</th>
                 <th width="auto">Sân Số</th>
+                <th width="auto">Ngày</th>
                 <th width="auto">Thời Gian</th>
                 <th width="auto">Giá Sân </th>
+                <th width="auto">Trạng Thái </th>
                 <th width="5px; !important">Tính Năng</th>
             </tr>
             </thead>
@@ -558,29 +560,38 @@
 
                 <tr>
                     <td>
-                        {{ $booking->id }}
+                        {{ $booking->booking_id }}
                     </td>
                     <td>
-                        {{ $booking->customers->customer_name}}
+                        {{ $booking->customer_name}}
                     </td>
                     <td>
-                        {{ $booking->customers->customer_nameclub }}
+                        {{ $booking->customer_nameclub }}
                     </td>
                     <td>
-                        {{ $pitches->pitch_number }}
+                        {{ $booking->pitch_number }} - Loại  {{ $booking->pitchtype_name }}
                     </td>
                     <td>
-                        {{ $booking->timeline->timeline_start }} - {{ $booking->timeline->timeline_end }}
+                        {{ $booking->booking_date }}
                     </td>
                     <td>
-                        {{ $booking->bookingDetail->current_price }}
+                        {{ $booking->timeline_start }} - {{ $booking->timeline_end }}
                     </td>
                     <td>
-                        <a href="{{ route('bookings.edit',$booking) }}" title="Sửa" data-toggle="tooltip">
+                        {{ $booking->current_price}}
+                    </td>
+                    <td>
+                        @if($booking->booking_status == 1)
+                            <b>Đã Đặt</b>
+                        @elseif($booking->booking_status == 2)
+                            <b>Đang Đá</b>
+                        @endif
+                    </td>
+                    <td>
+                        <a href="{{ route('bookings.edit', $booking->booking_id) }}" title="Sửa" data-toggle="tooltip">
                             <i class="fa fa-pencil" aria-hidden="true"></i>
-
                         </a>
-                        <form method="post" action="{{ route('bookings.destroy', $booking)}}">
+                        <form method="post" action="{{ route('bookings.destroy', $booking->booking_id) }}">
                             @csrf
                             @method('DELETE')
                             <button class="del-btn" title="Xóa" data-toggle="tooltip">
@@ -588,10 +599,9 @@
                             </button>
                         </form>
                     </td>
-                    @endforeach
                 </tr>
+            @endforeach
             </tbody>
-
         </table>
     </div>
 

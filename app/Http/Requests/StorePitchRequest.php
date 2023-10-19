@@ -24,7 +24,15 @@ class StorePitchRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'pitch_number' => ['required'],
+
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'pitch_number.required' => 'Vui lòng nhập số sân',
         ];
     }
 }

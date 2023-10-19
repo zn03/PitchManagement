@@ -439,7 +439,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="{{route('bookings.index')}}" data-toggle="tooltip" data-placement="bottom" title="LỊCH ĐẶT SÂN">LỊCH ĐẶT SÂN</a></li>
                 <li><a href="{{route('customers.index')}}" data-toggle="tooltip" data-placement="bottom" title="KHÁCH HÀNG">KHÁCH HÀNG</a></li>
-                <li ><a href="" data-toggle="tooltip" data-placement="bottom" title="NHÂN VIÊN">NHÂN VIÊN</a></li>
+                <li ><a href="{{route('staffs.index')}}" data-toggle="tooltip" data-placement="bottom" title="NHÂN VIÊN">NHÂN VIÊN</a></li>
                 <li ><a href="{{route('timelines.index')}}" data-toggle="tooltip" data-placement="bottom" title="THỜI GIAN">THỜI GIAN</a></li>
                 <li class="active"><a href="{{route('pitch_types.index')}}" data-toggle="tooltip" data-placement="bottom" title="LOẠI SÂN">LOẠI SÂN</a></li>
                 <li><a href="{{route('pitches.index')}}" data-toggle="tooltip" data-placement="bottom" title="SÂN">SÂN</a></li>
@@ -472,10 +472,16 @@
             <div>
                 <label  class="form-label">Loại Sân: </label>
                 <input type="text" class="form-control" id="pitchtype_name" name="pitchtype_name" >
+                @if($errors->has('pitchtype_name'))
+                    {{$errors->first('pitchtype_name')}}
+                @endif
             </div>
             <div>
                 <label  class="form-label"> Giá Tiền: </label>
                 <input type="text" class="form-control" id="pitchtype_price" name="pitchtype_price" >
+                @if($errors->has('pitchtype_price'))
+                    {{$errors->first('pitchtype_price')}}
+                @endif
             </div>
             <button type="submit" class="btn btn-primary">Thêm Vào</button>
         </form>

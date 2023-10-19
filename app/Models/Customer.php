@@ -11,7 +11,7 @@ class Customer extends Model
     protected $table = 'customers';
     protected $primaryKey = 'id';
     public $timestamps = false;
-    protected $fillable = ['customer_name', 'customer_phone', 'customer_address', 'email', 'password'];
+    protected $fillable = ['customer_name', 'customer_phone', 'customer_nameclub', 'email', 'password'];
     public function bookings(){
         return $this->hasMany(Booking::class);
     }
