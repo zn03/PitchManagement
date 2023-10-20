@@ -17,7 +17,6 @@ class StaffController extends Controller
     public function index()
     {
         $staffs = Staff::all();
-
         return view('Admin.staffs.index', [
             'staffs' => $staffs,
         ]);
@@ -42,10 +41,11 @@ class StaffController extends Controller
      */
     public function store(StoreStaffRequest $request)
     {
-        if ($request->validated()){
+         if ($request->validated()) {
             Staff::create($request->all());
+            flash()->addSuccess('Thêm mới thành công');
             return Redirect::route('staffs.index');
-        }else{
+        } else {
             return Redirect::back();
         }
 
@@ -96,7 +96,13 @@ class StaffController extends Controller
      */
     public function destroy(Staff $staff)
     {
-            $staff->delete();
+        if ($staff->bookings->count()> 0){
+            flash()->addError('Không thể xóa nhân viên này!');
             return Redirect::route('staffs.index');
+        } else {
+            $staff->delete();
+            flash()->addSuccess('Xóa thành công');
+            return Redirect::route('staffs.index');
+        }
     }
 }

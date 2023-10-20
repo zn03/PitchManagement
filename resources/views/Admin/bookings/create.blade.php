@@ -473,21 +473,21 @@
                 <label  class="form-label">Tên Khách Hàng: </label>
                 <input type="text" class="form-control" id="customer_name" name="customer_name" >
                 @if($errors->has('customer_name'))
-                    {{$errors->first('customer_name')}}
+                    <span class="text-danger">{{$errors->first('customer_name')}}</span>
                 @endif
             </div>
             <div>
                 <label  class="form-label">Số Điện Thoại: </label>
                 <input type="text" class="form-control" id="customer_phone" name="customer_phone" >
                 @if($errors->has('customer_phone'))
-                    {{$errors->first('customer_phone')}}
+                    <span class="text-danger">{{$errors->first('customer_phone')}}</span>
                 @endif
             </div>
             <div>
                 <label  class="form-label">Tên Đội Bóng: </label>
                 <input type="text" class="form-control" id="customer_nameclub" name="customer_nameclub" >
                 @if($errors->has('customer_nameclub'))
-                    {{$errors->first('customer_nameclub')}}
+                    <span class="text-danger">{{$errors->first('customer_nameclub')}}</span>
                 @endif
             </div>
             <div>
@@ -505,7 +505,7 @@
                 <label  class="form-label">Ngày: </label>
                 <input type="date"  class="form-control" id="booking_date" name="booking_date"  >
                 @if($errors->has('booking_date'))
-                    {{$errors->first('booking_date')}}
+                    <span class="text-danger">{{$errors->first('booking_date')}}</span>
                 @endif
             </div>
             <div>
@@ -542,7 +542,7 @@
                 <label  class="form-label">Ghi Chú: </label>
                 <input type="text" class="form-control" id="booking_note" name="booking_note" >
                 @if($errors->has('booking_note'))
-                    {{$errors->first('booking_note')}}
+                    <span class="text-danger">{{$errors->first('booking_note')}}</span>
                 @endif
             </div>
             <button type="submit" class="btn btn-primary">Thêm Vào</button>

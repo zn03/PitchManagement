@@ -473,14 +473,14 @@
                 <label  class="form-label">Loại Sân: </label>
                 <input type="text" class="form-control" id="pitchtype_name" name="pitchtype_name" >
                 @if($errors->has('pitchtype_name'))
-                    {{$errors->first('pitchtype_name')}}
+                    <span class="text-danger">{{$errors->first('pitchtype_name')}}</span>
                 @endif
             </div>
             <div>
                 <label  class="form-label"> Giá Tiền: </label>
                 <input type="text" class="form-control" id="pitchtype_price" name="pitchtype_price" >
                 @if($errors->has('pitchtype_price'))
-                    {{$errors->first('pitchtype_price')}}
+                    <span class="text-danger">{{$errors->first('pitchtype_price')}}</span>
                 @endif
             </div>
             <button type="submit" class="btn btn-primary">Thêm Vào</button>

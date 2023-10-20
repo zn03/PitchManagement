@@ -468,6 +468,9 @@
             <div>
                 <label  class="form-label">Sân Số: </label>
                 <input type="text" class="form-control" id="pitch_number" name="pitch_number"  value="{{$pitch->pitch_number}}">
+                @if($errors->has('pitch_number'))
+                    <span class="text-danger">{{$errors->first('pitch_number')}}</span>
+                @endif
             </div>
             <div>
                 <label  class="form-label">Loại Sân:</label>
@@ -498,7 +501,6 @@
                     >Còn Sân</option>
                     <option value="2"
                         @if($pitch->pitch_status == 2)
-
                         @endif
                     >Đang Sử Dụng</option>
                 </select>

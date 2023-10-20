@@ -28,7 +28,7 @@ class StoreStaffRequest extends FormRequest
             'staff_phone' => ['required','numeric','min:0'],
             'staff_address' => ['required'],
             'email' => ['required','email'],
-            'staff_password' => ['required','min:6'],
+            'password' => ['required','min:6'],
         ];
     }
 
@@ -42,8 +42,8 @@ class StoreStaffRequest extends FormRequest
             'staff_address.required' => 'Vui lòng nhập địa chỉ',
             'email.required' => 'Vui lòng nhập email',
             'email.email' => 'Email không đúng định dạng',
-            'staff_password.required' => 'Vui lòng nhập mật khẩu',
-            'staff_password.min' => 'Mật khẩu phải có ít nhất 6 ký tự',
+            'password.required' => 'Vui lòng nhập mật khẩu',
+            'password.min' => 'Mật khẩu phải có ít nhất 6 ký tự',
         ];
     }
 }

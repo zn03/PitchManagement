@@ -126,42 +126,8 @@
             padding-top: 100px !important;
             padding-bottom: 150px;
         }
-        .nv{
-            background: rgb(20, 97, 197);
-            border: 1px solid rgb(255, 255, 255);
-            width: 100px;
-            text-align: center;
-            height: 30px;
-            border-radius: 5px;
-            color: rgb(255, 255, 255);
-            float: left;
-            margin-right: 10px;
-            margin-bottom: 10px;
-            margin-top: 10px;
-            font-weight: 600;
-        }
-        .nv1{
-            background: royalblue;
-            border: 1px solid rgb(255, 255, 255);
-            width: 100px;
-            text-align: center;
-            height: 30px;
-            border-radius:5px;
-            color: white;
-            margin-left: auto;
-            margin-right: auto;
-            font-weight: 600;
-        }
-        .nv:hover, .nv:active{
-            background: white;
-            border: 1px solid black;
-            color: black;
-        }
-        .nv1:hover, .nv1:active{
-            background: white;
-            border: 1px solid black;
-            color: black;
-        }
+
+
         thead tr th{
             color: rgb(255, 255, 255);
             font-size: 14px;
@@ -174,35 +140,7 @@
             color: black;
             font-weight: 600;
         }
-        .ds{
-            font-size: 30px;
-            color: black;
-        }
-        #myInput {
-            /*background-image: url('/css/searchicon.png');*/
-            background-position: 10px 10px;
-            background-repeat: no-repeat;
-            width: 100%;
-            font-size: 14px;
-            padding: 12px 20px 12px 40px;
-            border: 1px solid #ddd;
-            margin-bottom: 12px;
-            border-radius: 20px;
-            outline: none !important;
-        }
-        .header{
-            color: rgb(255, 255, 255);
-            font-size: 13px;
-            background: #006bcf;
-        }
 
-        #myTable {
-            border-collapse: collapse;
-            width: 100%;
-            border: 1px solid #ddd;
-            font-size: 12px;
-            padding: 0px !important;
-        }
 
         #myTable th,
         #myTable td {
@@ -240,29 +178,6 @@
             text-decoration: none;
             color: green;
         }
-        #topBtn{
-            position: fixed;
-            bottom: 90px;
-            right: 40px;
-            font-size: 12px;
-            width: 30px;
-            height: 30px;
-            background: rgb(0, 0, 0);
-            color: rgb(236, 236, 236);
-            border: none;
-            cursor: pointer;
-            display: none;
-            opacity: 1;
-            opacity: 0.9;
-        }
-        .myInput{
-            position: relative;
-        }
-        .fa-search{
-            position: absolute;
-            margin-left: 15px;
-            margin-top: -40px;
-        }
 
         #clock{
             text-align: center;
@@ -276,44 +191,12 @@
             margin-right: auto;
             margin-top: 10px;
         }
-        .background-modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgb(0,0,0);
-            background-color: rgba(0,0,0,0.4);
-            padding-top: 60px;
-        }
-
-        .modal-content {
-            background-color: #fefefe;
-            margin: 5% auto 15% auto;
-            border: 1px solid #888;
-            width: 80%;
-            text-align: left;
-            border-radius: 12px;
-        }
-
-        .dataTables_filter{
-            display: none;
-        }
-        .sorting {
-            background: none !important;
-        }
         #myTable table {
             padding: 0px 0px 0px 0px !important;
             border-bottom: 1px solid black;
             font-weight: bold;
             cursor: pointer;
             *cursor: hand;
-        }
-        .pagination{
-            float: right;
         }
         .hr1{
             border: 1px solid black;
@@ -328,29 +211,12 @@
             padding-bottom: 20px;
         }
 
-        .table-title {
-            padding-bottom: 10px;
-            margin: 0 0 10px;
-        }
         .table-title h2 {
             margin: 6px 0 0;
             font-size: 22px;
         }
-        .table-title .add-new {
-            float: right;
-            height: 30px;
-            font-weight: bold;
-            font-size: 12px;
-            text-shadow: none;
-            min-width: 100px;
-            border-radius: 50px;
-            line-height: 13px;
-        }
         .table-title .add-new i {
             margin-right: 4px;
-        }
-        table.table {
-            table-layout: fixed;
         }
         table.table tr th, table.table tr td {
             border-color: #e9e9e9;
@@ -369,15 +235,6 @@
             margin: 0 5px;
             min-width: 24px;
         }
-        table.table td a.add {
-            color: #27C46B;
-        }
-        table.table td a.edit {
-            color: rgb(23, 45, 250);
-        }
-        table.table td a.delete {
-            color: #E34724;
-        }
         table.table td i {
             font-size: 15px;
         }
@@ -386,18 +243,6 @@
             margin-right: -1px;
             position: relative;
             top: 3px;
-        }
-        table.table .form-control {
-            height: 32px;
-            line-height: 32px;
-            box-shadow: none;
-            border-radius: 2px;
-        }
-        table.table .form-control.error {
-            border-color: #f50000;
-        }
-        table.table td .add {
-            display: none;
         }
         .modal-3 li a{
             border: 1px solid black !important;
@@ -410,16 +255,6 @@
             text-decoration: none;
             cursor: pointer;
             font-weight: 600;
-            text-align: center;
-        }
-
-        .pg-selected {
-            color: black;
-            font-weight: bold;
-            text-decoration: underline;
-            cursor: pointer;
-            text-decoration: none;
-            font-size: 15px;
             text-align: center;
         }
     </style>
@@ -538,23 +373,31 @@
             @method('PUT')
             <div>
                 <label  class="form-label">Thời Gian Bắt Đầu: </label>
-                <input type="time" class="form-control" id="timeline_start" name="timeline_start"  value="{{$timeline->timeline_start}} ">
+                <input type="time" class="form-control" id="timeline_start" name="timeline_start"  value="{{$timeline->timeline_startx}} ">
+                @if($errors->has('timeline_start'))
+                    <span class="text-danger">{{$errors->first('timeline_start')}}</span>
+                @endif
             </div>
             <div>
                 <label  class="form-label">Thời Gian Kết Thúc:  </label>
                 <input type="time" class="form-control" id="timeline_end" name="timeline_end" value="{{$timeline->timeline_end}}" >
+                @if($errors->has('timeline_end'))
+                    <span class="text-danger">{{$errors->first('timeline_end')}}</span>
+                @endif
             </div>
             <div>
                 <label  class="form-label">Giá Tiền Theo Thời Gian: </label>
                 <input type="text" class="form-control" id="timeline_price" name="timeline_price" value="{{$timeline->timeline_price}}" >
+                @if($errors->has('timeline_price'))
+                    <span class="text-danger">{{$errors->first('timeline_price')}}</span>
+                @endif
             </div>
             <button type="submit" class="btn btn-primary">Sửa</button>
         </form>
     </div>
-
     <div id="pageNavPosition" class="text-right"></div>
     <script type="text/javascript">
-        var pager = new Pager('myTable', 8);
+        var pager = new Pager('myTable', 5);
         pager.init();
         pager.showPageNav('pager', 'pageNavPosition');
         pager.showPage(1);

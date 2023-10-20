@@ -24,7 +24,7 @@ class UpdateTimelineRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+
         ];
     }
 }

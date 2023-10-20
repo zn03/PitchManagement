@@ -545,21 +545,21 @@
                 <label  class="form-label">Thời Gian Bắt Đầu:</label>
                 <input type="time" class="form-control" id="timeline_start" name="timeline_start" >
                 @if($errors->has('timeline_start'))
-                    {{$errors->first('timeline_start')}}
+                    <span class="text-danger">{{$errors->first('timeline_start')}}</span>
                 @endif
             </div>
             <div>
                 <label  class="form-label">Thời Gian Kết Thúc:  </label>
                 <input type="time" class="form-control" id="timeline_end" name="timeline_end" >
                 @if($errors->has('timeline_end'))
-                    {{$errors->first('timeline_end')}}
+                    <span class="text-danger">{{$errors->first('timeline_end')}}</span>
                 @endif
             </div>
             <div>
                 <label  class="form-label"> Giá Tiền Theo Thời Gian: </label>
                 <input type="text" class="form-control" id="timeline_price" name="timeline_price" >
                 @if($errors->has('timeline_price'))
-                    {{$errors->first('timeline_price')}}
+                    <span class="text-danger">{{$errors->first('timeline_price')}}</span>
                 @endif
             </div>
             <button type="submit" class="btn btn-primary">Thêm Vào</button>
@@ -570,7 +570,7 @@
 
     <div id="pageNavPosition" class="text-right"></div>
     <script type="text/javascript">
-        var pager = new Pager('myTable', 8);
+        var pager = new Pager('myTable', 5);
         pager.init();
         pager.showPageNav('pager', 'pageNavPosition');
         pager.showPage(1);

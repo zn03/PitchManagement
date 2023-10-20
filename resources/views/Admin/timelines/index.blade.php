@@ -423,7 +423,6 @@
             text-align: center;
         }
     </style>
-
     <script type="text/javascript">
         //Phân Trang Cho Table
         function Pager(tableName, itemsPerPage) {
@@ -528,7 +527,6 @@
 <div class="container-fluid al">
     <div id="clock"></div>
     <Br>
-
     <b>CHỨC NĂNG CHÍNH:</b><Br>
     <a href="{{ route('timelines.create')}}">
         <button class="nv btn add-new" type="button" data-toggle="tooltip" data-placement="top" title="Thêm Thời Gian">
@@ -536,12 +534,9 @@
         </button>
     </a>
     <div class="table-title">
-        <div class="row">
-        </div>
-
+        <div class="row"></div>
     </div>
-    <div class="panel-body">
-        <table class="table table-striped table-bordered">
+        <table class="table table-striped table-bordered" id="myTable">
             <thead>
             <tr class="ex">
                 <th width="auto">ID</th>
@@ -569,7 +564,6 @@
                     <td>
                         <a href="{{ route('timelines.edit',$timeline) }}" title="Sửa" data-toggle="tooltip">
                             <i class="fa fa-pencil" aria-hidden="true"></i>
-
                         </a>
                         <form method="post" action="{{ route('timelines.destroy', $timeline)}}">
                             @csrf
@@ -579,17 +573,13 @@
                             </button>
                         </form>
                     </td>
-                    @endforeach
                 </tr>
+              @endforeach
             </tbody>
-
         </table>
-    </div>
-
-
     <div id="pageNavPosition" class="text-right"></div>
     <script type="text/javascript">
-        var pager = new Pager('myTable', 8);
+        var pager = new Pager('myTable', 5);
         pager.init();
         pager.showPageNav('pager', 'pageNavPosition');
         pager.showPage(1);

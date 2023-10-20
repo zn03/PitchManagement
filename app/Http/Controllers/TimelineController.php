@@ -41,6 +41,7 @@ class TimelineController extends Controller
     {
         if ($request->validated()) {
             Timeline::create($request->all());
+            flash()->addSuccess('Thêm mới thành công');
             return Redirect::route('timelines.index');
         } else {
             return Redirect::back();
@@ -81,6 +82,7 @@ class TimelineController extends Controller
     public function update(UpdateTimelineRequest $request, Timeline $timeline)
     {
         $timeline->update($request->all());
+        flash()->addSuccess('Cập nhật thành công');
         return Redirect::route('timelines.index');
     }
 
@@ -92,8 +94,12 @@ class TimelineController extends Controller
      */
     public function destroy(Timeline $timeline)
     {
-        $timeline->delete();
-        // Quay về trang danh sách
-        return Redirect::route('timelines.index');
+        if ($timeline->bookings()->count() > 0) {
+            flash()->addError('Không thể xóa khung giờ này!');
+            return Redirect::route('timelines.index');
+        } else{
+            $timeline->delete();
+            flash()->addSuccess('Xóa thành công');
+            return Redirect::route('timelines.index');}
     }
 }

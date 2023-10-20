@@ -24,12 +24,11 @@ class StoreBookingRequest extends FormRequest
     public function rules()
     {
         return [
-            'booking_date' => ['required|date'],
+            'booking_date' => ['required', 'date'],
             'booking_note' => ['required'],
             'customer_name' => ['required'],
-            'customer_phone' => ['required|string|max:10'],
-            'customer_email' => ['required|email'],
-            'customer_address' => ['required'],
+            'customer_phone' => ['required', 'max:10'],
+            'customer_nameclub'=>['required'],
         ];
     }
 
@@ -37,14 +36,11 @@ class StoreBookingRequest extends FormRequest
     {
         return [
             'booking_date.required' => 'Vui lòng chọn ngày đặt sân',
+            'booking_date.date' => 'Ngày đặt sân không hợp lệ',
             'booking_note.required' => 'Vui lòng nhập ghi chú',
             'customer_name.required' => 'Vui lòng nhập tên khách hàng',
-            'customer_phone.required' => 'Vui lòng nhập số điện thoại',
-            'customer_phone.max' => 'Số điện thoại không hợp lệ',
-            'email.required' => 'Vui lòng nhập email',
-            'email.email' => 'Email không hợp lệ',
-            'customer_address.required' => 'Vui lòng nhập địa chỉ',
-
+            'customer_phone.required'=> 'Vui lòng nhập số điện thoại',
+            'customer_nameclub.required'=> 'Vui lòng nhập tên đội'
         ];
     }
 }

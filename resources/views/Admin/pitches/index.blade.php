@@ -541,7 +541,7 @@
 
     </div>
     <div class="panel-body">
-        <table class="table table-striped table-bordered">
+        <table class="table table-striped table-bordered" id="myTable">
             <thead>
             <tr class="ex">
                 <th width="auto">ID</th>

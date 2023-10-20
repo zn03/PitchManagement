@@ -85,9 +85,12 @@ class CustomerController extends Controller
      */
     public function destroy(Customer $customer)
     {
-        // Xóa dữ liệu khách hàng
-        $customer->delete();
-        // Quay về trang danh sách
-        return Redirect::route('customers.index');
-    }
+        if ($customer->bookings->count() > 0) {
+            flash()->addError('Không thể xóa khách hàng này!');
+            return Redirect::route('customers.index');
+        } else{
+            $customer->delete();
+            flash()->addSuccess('Xóa thành công');
+            return Redirect::route('customers.index');}
+        }
 }

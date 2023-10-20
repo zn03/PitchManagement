@@ -80,6 +80,7 @@ class PitchTypeController extends Controller
     {
         if ($request->validated()) {
             $pitchType->update($request->all());
+            flash()->addSuccess('Thêm mới thành công');
             return Redirect::route('pitch_types.index');
         } else {
             return Redirect::back();
@@ -94,8 +95,11 @@ class PitchTypeController extends Controller
      */
     public function destroy(PitchType $pitchType)
     {
-        $pitchType->delete();
-        // Quay về trang danh sách
-        return Redirect::route('pitch_types.index');
+        if($pitchType->pitches->count() > 0){
+            flash()->addError('Không thể xóa loại sân này!');
+            return Redirect::route('pitch_types.index');
+        } else{
+            $pitchType->delete();
+            return Redirect::route('pitch_types.index');}
     }
 }

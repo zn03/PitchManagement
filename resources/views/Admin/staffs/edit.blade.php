@@ -538,22 +538,37 @@
             <div>
                 <label  class="form-label">Tên Nhân Viên:</label>
                 <input type="text" class="form-control" id="staff_name" name="staff_name"  value="{{$staff->staff_name}}">
+                @if($errors->has('staff_name'))
+                    <span class="text-danger">{{$errors->first('staff_name')}}</span>
+                @endif
             </div>
             <div>
                 <label  class="form-label">Số Điện Thoại: </label>
                 <input type="text" class="form-control" id="staff_phone" name="staff_phone" value="{{$staff->staff_phone}}" >
+                @if($errors->has('staff_phone'))
+                    <span class="text-danger">{{$errors->first('staff_phone')}}</span>
+                @endif
             </div>
             <div>
                 <label  class="form-label"> Địa Chỉ: </label>
                 <input type="text" class="form-control" id="staff_address" name="staff_address" value="{{$staff->staff_address}}" >
+                @if($errors->has('staff_address'))
+                    <span class="text-danger">{{$errors->first('staff_address')}}</span>
+                @endif
             </div>
             <div>
                 <label  class="form-label">Email: </label>
                 <input type="email" class="form-control" id="email" name="email" value="{{$staff->email}}" >
+                @if($errors->has('email'))
+                    <span class="text-danger">{{$errors->first('email')}}</span>
+                @endif
             </div>
             <div class="mb-3">
                 <label  class="form-label">Mật khẩu: </label>
                 <input type="password" id="password" name="password" class="form-control" value="{{$staff->password}}">
+                @if($errors->has('password'))
+                    <span class="text-danger">{{$errors->first('password')}}</span>
+                @endif
             </div>
             <button type="submit" class="btn btn-primary">Sửa</button>
         </form>

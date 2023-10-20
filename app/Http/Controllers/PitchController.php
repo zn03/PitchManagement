@@ -46,11 +46,11 @@ class PitchController extends Controller
     {
         if ($request->validated()) {
             Pitch::create($request->all());
+            flash()->addSuccess('Thêm mới thành công');
             return Redirect::route('pitches.index');
         } else {
             return Redirect::back();
         }
-
     }
 
     /**
@@ -88,8 +88,12 @@ class PitchController extends Controller
      */
     public function update(UpdatePitchRequest $request, Pitch $pitch)
     {
-        $pitch->update($request->all());
-        return Redirect::route('pitches.index');
+        if ($request->validated()) {
+            $pitch->update($request->all());
+            return Redirect::route('pitches.index');
+        } else {
+            return Redirect::back();
+        }
     }
 
     /**
@@ -100,7 +104,12 @@ class PitchController extends Controller
      */
     public function destroy(Pitch $pitch)
     {
-        $pitch->delete();
-        return Redirect::route('pitches.index');
+        if ($pitch->bookingDetail->count() > 0) {
+            flash()->addError('Không thể xóa sân này!');
+            return Redirect::route('pitches.index');
+        }else{
+            $pitch->delete();
+            flash()->addSuccess('Xóa thành công');
+            return Redirect::route('pitches.index');}
     }
 }

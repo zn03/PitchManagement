@@ -468,10 +468,16 @@
             <div>
                 <label  class="form-label">Loại Sân: </label>
                 <input type="text" class="form-control" id="pitchtype_name" name="pitchtype_name"  value="{{$pitchType->pitchtype_name}}">
+                @if($errors->has('pitchtype_name'))
+                    <span class="text-danger">{{$errors->first('pitchtype_name')}}</span>
+                @endif
             </div>
             <div>
                 <label  class="form-label">Giá Sân:</label>
-                <input type="text" class="form-control" id="pitchtype_price" name="pitchtype_price" value="{{$pitchType->pitchtype_price}}" >
+                <input type="text" class="form-control" id="pitchtype_price" name="pitchtype_price" value="{{$pitchType->pitchtype_price}}"
+                @if($errors->has('pitchtype_price'))
+                    <span class="text-danger">{{$errors->first('pitchtype_price')}}</span>
+                @endif>
             </div>
             <button type="submit" class="btn btn-primary">Sửa</button>
         </form>

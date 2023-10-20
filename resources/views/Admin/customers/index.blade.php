@@ -539,7 +539,7 @@
 
     </div>
     <div class="panel-body">
-        <table class="table table-striped table-bordered">
+        <table class="table table-striped table-bordered" id="myTable">
             <thead>
             <tr class="ex">
                 <th width="auto">ID</th>
@@ -582,7 +582,7 @@
 
     <div id="pageNavPosition" class="text-right"></div>
     <script type="text/javascript">
-        var pager = new Pager('myTable', 8);
+        var pager = new Pager('myTable', 5);
         pager.init();
         pager.showPageNav('pager', 'pageNavPosition');
         pager.showPage(1);

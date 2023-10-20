@@ -81,7 +81,6 @@ class BookingController extends Controller
            $customer = Customer::create($array);
            $last_record = Customer::latest('id')->first()->toArray();
 
-
            $booking = [];
            $booking = Arr::add($booking, 'customer_id', $last_record['id']);
            $booking = Arr::add($booking, 'staff_id', $request->staff_id);
@@ -92,7 +91,6 @@ class BookingController extends Controller
            $booking = Booking::create($booking);
 
            $last_record_booking = Booking::latest('id')->first()->toArray();
-
 
            $booking = Booking::join('timelines', 'timelines.id', '=', 'bookings.timeline_id')
                ->where('bookings.id', $last_record_booking['id'])
@@ -115,9 +113,8 @@ class BookingController extends Controller
            $bookingDetail = BookingDetail::create($bookingDetail);
            flash()->addSuccess('Thêm mới thành công');
            return Redirect::route('bookings.index');
-
        } else
-              return Redirect::back();
+           return Redirect::back();
     }
 
     /**
@@ -170,36 +167,44 @@ class BookingController extends Controller
      */
     public function update(UpdateBookingRequest $request, Booking $booking)
     {
+        if ($request->validated()){
+            $array = [];
+            $array = Arr::add($array, 'customer_name', $request->customer_name);
+            $array = Arr::add($array, 'customer_phone', $request->customer_phone);
+            $array = Arr::add($array, 'customer_nameclub', $request->customer_nameclub);
+            $customer = Customer::create($array);
+            $last_record = Customer::latest('id')->first()->toArray();
 
-        $array = [];
-        $array = Arr::add($array, 'customer_name', $request->customer_name);
-        $array = Arr::add($array, 'customer_phone', $request->customer_phone);
-        $array = Arr::add($array, 'customer_nameclub', $request->customer_nameclub);
-        $customer = Customer::create($array);
-        $last_record = Customer::latest('id')->first()->toArray();
+            $booking = [];
+            $booking = Arr::add($booking, 'customer_id', $last_record['id']);
+            $booking = Arr::add($booking, 'staff_id', $request->staff_id);
+            $booking = Arr::add($booking, 'timeline_id', $request->timeline_id);
+            $booking = Arr::add($booking, 'booking_date', $request->booking_date);
+            $booking = Arr::add($booking, 'booking_status', $request->booking_status);
+            $booking = Arr::add($booking, 'booking_note', $request->booking_note);
 
-        $booking = [];
-        $booking = Arr::add($booking, 'customer_id', $last_record['id']);
-        $booking = Arr::add($booking, 'staff_id', $request->staff_id);
-        $booking = Arr::add($booking, 'timeline_id', $request->timeline_id);
-        $booking = Arr::add($booking, 'booking_date', $request->booking_date);
-        $booking = Arr::add($booking, 'booking_status', $request->booking_status);
-        $booking = Arr::add($booking, 'booking_note', $request->booking_note);
+            $booking = Booking::where('id', $request->booking_id)->update($booking);
 
-        $booking = Booking::where('id', $request->booking_id)->update($booking);
-
-        return Redirect::route('bookings.index');
-
+            return Redirect::route('bookings.index');
+        } else
+            return Redirect::back();
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Booking  $booking
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Booking $booking)
     {
 
-    }
+        if ($booking->customers->count() > 0) {
+            flash()->addError('Không thể xóa lịch đặt này!');
+            return Redirect::route('bookings.index');
+        } else{
+            $booking->delete();
+            flash()->addSuccess('Xóa thành công');
+            return Redirect::route('bookings.index');}
+        }
 }

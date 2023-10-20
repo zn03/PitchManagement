@@ -473,7 +473,7 @@
                 <label  class="form-label">Sân Số : </label>
                 <input type="text" class="form-control" id="pitch_number" name="pitch_number" >
                 @if($errors->has('pitch_number'))
-                    {{$errors->first('pitch_number')}}
+                    <span class="text-danger">{{$errors->first('pitch_number')}}</span>
                 @endif
             </div>
             <div>
