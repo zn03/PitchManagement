@@ -150,6 +150,7 @@ class BookingController extends Controller
             ->select('bookings.*', 'booking_details.*', 'pitches.*', 'pitch_types.*', 'timelines.*', 'customers.*', 'staffs.*')
             ->where('bookings.id', $booking_id)
             ->get();
+
         return view ('Admin.bookings.edit', [
             'bookings' => $bookings,
             'timelines'=> $timelines,
@@ -196,15 +197,15 @@ class BookingController extends Controller
      * @param  \App\Models\Booking  $booking
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Booking $booking)
+    public function destroy(Booking $booking, $booking_id)
     {
+        $booking = Booking::where('id', $booking_id)->first();
+        
 
-        if ($booking->customers->count() > 0) {
-            flash()->addError('Không thể xóa lịch đặt này!');
-            return Redirect::route('bookings.index');
-        } else{
-            $booking->delete();
-            flash()->addSuccess('Xóa thành công');
-            return Redirect::route('bookings.index');}
-        }
+        $booking->delete();
+
+        return Redirect::route('bookings.index');
+
+
+    }
 }

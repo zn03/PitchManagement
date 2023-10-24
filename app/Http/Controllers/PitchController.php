@@ -110,6 +110,7 @@ class PitchController extends Controller
         }else{
             $pitch->delete();
             flash()->addSuccess('Xóa thành công');
-            return Redirect::route('pitches.index');}
+            return Redirect::route('pitches.index');
+        }
     }
 }

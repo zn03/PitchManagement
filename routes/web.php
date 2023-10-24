@@ -67,6 +67,8 @@ Route::prefix('Admin/bookings/')->group(function(){
 
 });
 
+Route::get('Admin/dashboard',[\App\Http\Controllers\DashBoardController::class, 'index'] )->name('dashboard.index');
+
 //Route::prefix('Admin/login/')->group(function(){
 //    Route::get('/login', [\App\Http\Controllers\Admin\LoginController::class, 'login'])->name('users.login');
 //    Route::post('/login', [\App\Http\Controllers\Admin\LoginController::class, 'loginProcess'])->name('user.loginProcess');

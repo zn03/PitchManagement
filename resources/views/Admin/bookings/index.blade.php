@@ -509,6 +509,7 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
+                <li ><a href="{{route('dashboard.index')}}" data-toggle="tooltip" data-placement="bottom" title="DASHBOARD">DASHBOARD</a></li>
                 <li class="active"><a href="{{route('bookings.index')}}" data-toggle="tooltip" data-placement="bottom" title="LỊCH ĐẶT SÂN">LỊCH ĐẶT SÂN</a></li>
                 <li><a href="{{route('customers.index')}}" data-toggle="tooltip" data-placement="bottom" title="KHÁCH HÀNG">KHÁCH HÀNG</a></li>
                 <li ><a href="{{route('staffs.index')}}" data-toggle="tooltip" data-placement="bottom" title="NHÂN VIÊN">NHÂN VIÊN</a></li>
@@ -591,13 +592,9 @@
                         <a href="{{ route('bookings.edit', $booking->booking_id) }}" title="Sửa" data-toggle="tooltip">
                             <i class="fa fa-pencil" aria-hidden="true"></i>
                         </a>
-                        <form method="post" action="{{ route('bookings.destroy', $booking->booking_id) }}">
-                            @csrf
-                            @method('DELETE')
-                            <button class="del-btn" title="Xóa" data-toggle="tooltip">
-                                <i class="fa fa-trash-o" aria-hidden="true"></i>
-                            </button>
-                        </form>
+                        <a href="{{route('bookingDetail.index', $booking->booking_id)}}" title="Chi Tiết" data-toggle="tooltip">
+                            <i class="fa-solid fa-eye fa-beat-fade" aria-hidden="true"></i>
+                        </a>
                     </td>
                 </tr>
             @endforeach
