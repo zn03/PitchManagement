@@ -592,9 +592,9 @@
                         <a href="{{ route('bookings.edit', $booking->booking_id) }}" title="Sửa" data-toggle="tooltip">
                             <i class="fa fa-pencil" aria-hidden="true"></i>
                         </a>
-                        <a href="{{route('bookingDetail.index', $booking->booking_id)}}" title="Chi Tiết" data-toggle="tooltip">
-                            <i class="fa-solid fa-eye fa-beat-fade" aria-hidden="true"></i>
-                        </a>
+{{--                        <a href="{{route('bookingDetail.index', $booking->booking_id)}}" title="Chi Tiết" data-toggle="tooltip">--}}
+{{--                            <i class="fa-solid fa-eye fa-beat-fade" aria-hidden="true"></i>--}}
+{{--                        </a>--}}
                     </td>
                 </tr>
             @endforeach

@@ -41,6 +41,7 @@ class PitchTypeController extends Controller
     public function store(StorePitchTypeRequest $request)
     {
         PitchType::create($request->all());
+        flash()->addSuccess('Thêm mới thành công');
         return Redirect::route('pitch_types.index');
     }
 
@@ -100,6 +101,7 @@ class PitchTypeController extends Controller
             return Redirect::route('pitch_types.index');
         } else{
             $pitchType->delete();
+            flash()->addSuccess('Xóa thành công');
             return Redirect::route('pitch_types.index');}
     }
 }

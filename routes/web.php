@@ -64,10 +64,17 @@ Route::prefix('Admin/bookings/')->group(function(){
     Route::get('/{booking_id}/edit', [\App\Http\Controllers\BookingController::class, 'edit'])->name('bookings.edit');
     Route::put('/{booking_id}/edit', [\App\Http\Controllers\BookingController::class, 'update'])->name('bookings.update');
     Route::delete('/{booking_id}/destroy', [\App\Http\Controllers\BookingController::class, 'destroy'])->name('bookings.destroy');
-
 });
 
 Route::get('Admin/dashboard',[\App\Http\Controllers\DashBoardController::class, 'index'] )->name('dashboard.index');
+
+Route::get('Client/index',[\App\Http\Controllers\ClientIndexController::class, 'index'] )->name('home.index');
+Route::get('Client/about',[\App\Http\Controllers\ClientAboutController::class, 'index'] )->name('home.about');
+Route::get('Client/contact',[\App\Http\Controllers\ClientContactController::class, 'index'] )->name('home.contact');
+Route::get('Client/booking',[\App\Http\Controllers\ClientBookingController::class, 'create'] )->name('home.booking');
+Route::post('Client/booking',[\App\Http\Controllers\ClientBookingController::class, 'store'] )->name('booking.store');
+Route::get('Client/news',[\App\Http\Controllers\ClientNewsController::class, 'index'] )->name('home.news');
+Route::get('Client/staff',[\App\Http\Controllers\ClientStaffController::class, 'index'] )->name('home.staff');
 
 //Route::prefix('Admin/login/')->group(function(){
 //    Route::get('/login', [\App\Http\Controllers\Admin\LoginController::class, 'login'])->name('users.login');
