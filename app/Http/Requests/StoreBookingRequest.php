@@ -25,7 +25,6 @@ class StoreBookingRequest extends FormRequest
     {
         return [
             'booking_date' => ['required', 'date'],
-            'booking_note' => ['required'],
             'customer_name' => ['required'],
             'customer_phone' => ['required', 'max:10'],
             'customer_nameclub'=>['required'],
@@ -37,7 +36,6 @@ class StoreBookingRequest extends FormRequest
         return [
             'booking_date.required' => 'Vui lòng chọn ngày đặt sân',
             'booking_date.date' => 'Ngày đặt sân không hợp lệ',
-            'booking_note.required' => 'Vui lòng nhập ghi chú',
             'customer_name.required' => 'Vui lòng nhập tên khách hàng',
             'customer_phone.required'=> 'Vui lòng nhập số điện thoại',
             'customer_nameclub.required'=> 'Vui lòng nhập tên đội'

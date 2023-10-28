@@ -34,8 +34,10 @@ class BookingController extends Controller
             ->join('customers', 'customers.id', '=', 'bookings.customer_id')
             ->join('staffs', 'staffs.id', '=', 'bookings.staff_id')
             ->select('bookings.*', 'booking_details.*', 'pitches.*', 'pitch_types.*', 'timelines.*', 'customers.*', 'staffs.*')
-            ->orderBy('bookings.id', 'asc')
+            ->orderBy('bookings.id', 'desc')
+            ->limit(8)
             ->get();
+
         $formattedBookings = [];
         foreach ($bookings as $booking) {
             $formattedBooking = $booking;
@@ -200,7 +202,7 @@ class BookingController extends Controller
     public function destroy(Booking $booking, $booking_id)
     {
         $booking = Booking::where('id', $booking_id)->first();
-        
+
 
         $booking->delete();
 
