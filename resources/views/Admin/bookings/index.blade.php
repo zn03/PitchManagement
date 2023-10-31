@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="{{asset('css/admin.css')}}">
     <link rel="stylesheet" href="{{asset('css/fontawesome-free-6.4.2-web/css/all.min.css')}}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css">
     <script type="text/javascript">
         //Phân Trang Cho Table
         function Pager(tableName, itemsPerPage) {
@@ -113,7 +114,7 @@
                 <li ><a href="{{route('pitches.index')}}" data-toggle="tooltip" data-placement="bottom" title="SÂN">SÂN</a></li>
                 <li><a  data-toggle="tooltip" data-placement="bottom" title="TÀI KHOẢN">Tài Khoản</a>
                     <ul class="dropdown">
-                        <li><a data-toggle="tooltip" data-placement="bottom"
+                        <li><a href="{{route('staffs.logout')}}" data-toggle="tooltip" data-placement="bottom"
                                title="ĐĂNG XUẤT"><b>Đăng xuất <i class="fas fa-sign-out-alt"></i></b></a></li>
                     </ul>
                 </li>
@@ -174,24 +175,28 @@
                         {{ $booking->timeline_start }} - {{ $booking->timeline_end }}
                     </td>
                     <td>
-                        {{ $booking->current_price}}
+                        {{number_format($booking->current_price, 0, ',', '.')}} VND
                     </td>
                     <td>
-                        @if($booking->booking_status == 1)
-                            <b>Đã Đặt</b>
+                        @if($booking->booking_status == 0)
+                            <span class="status waiting " >Chờ Xác Nhận</span>
+                        @elseif($booking->booking_status == 1)
+                            <span class="status inProgress ">Đã Đặt</span>
                         @elseif($booking->booking_status == 2)
-                            <b>Đang Đá</b>
+                            <span class="status pending ">Đang Đá</span>
                         @elseif($booking->booking_status == 3)
-                            <b>Đã Hoàn Thành</b>
+                            <span class="status delivered">Đã Hoàn Thành</span>
+                        @elseif($booking->booking_status == 4)
+                            <span class="status return ">Đã Hủy</span>
                         @endif
                     </td>
                     <td>
                         <a href="{{ route('bookings.edit', $booking->booking_id) }}" title="Sửa" data-toggle="tooltip">
                             <i class="fa fa-pencil" aria-hidden="true"></i>
                         </a>
-{{--                        <a href="{{route('bookingDetail.index', $booking->booking_id)}}" title="Chi Tiết" data-toggle="tooltip">--}}
-{{--                            <i class="fa-solid fa-eye fa-beat-fade" aria-hidden="true"></i>--}}
-{{--                        </a>--}}
+                        <a href="{{route('bookings.detail', $booking->booking_id)}}" title="Chi Tiết" data-toggle="tooltip">
+                            <i class="fa-solid fa-eye fa-beat-fade" aria-hidden="true"></i>
+                        </a>
                     </td>
                 </tr>
             @endforeach
@@ -201,7 +206,7 @@
 
     <div id="pageNavPosition" class="text-right"></div>
     <script type="text/javascript">
-        var pager = new Pager('myTable', 5);
+        var pager = new Pager('myTable', 8);
         pager.init();
         pager.showPageNav('pager', 'pageNavPosition');
         pager.showPage(1);

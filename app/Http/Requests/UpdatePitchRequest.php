@@ -24,7 +24,17 @@ class UpdatePitchRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'pitch_number' => ['required', 'max:10', 'unique:pitches,pitch_number,' . $this->pitch->id],
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'pitch_number.required' => 'Vui lòng nhập tên sân',
+            'pitch_number.max' => 'Tên sân không được vượt quá 10 ký tự',
+            'pitch_number.unique' => 'Tên sân đã tồn tại',
+
         ];
     }
 }

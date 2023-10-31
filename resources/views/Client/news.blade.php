@@ -55,31 +55,25 @@
                 <div class="row">
                     <ul class="slimmenu fl">
                         <li>
-                            <a ></a>
-                        </li>
-                        <li>
-                            <a></a>
-                        </li>
-                        <li>
-                            <a></a>
-                        </li>
-                        <li>
-                            <a title="Trang Chủ" href="{{route('home.index')}}"><em class="fa fa-lg fa-home"></em> Trang Chủ</a>
+                            <a title="Trang Chủ" href="{{route('client.index')}}"><em class="fa fa-lg fa-home"></em> Trang Chủ</a>
                         </li>
                         <li >
-                            <a title="Đặt Sân" href="{{route('home.booking')}}" >Đặt Sân</a>
+                            <a title="Đặt Sân" href="{{route('client.booking')}}" >Đặt Sân</a>
                         </li>
                         <li>
-                            <a title="Giới Thiệu" href="{{route('home.about')}}" >Giới Thiệu</a>
+                            <a title="Giới Thiệu" href="{{route('client.about')}}" >Giới Thiệu</a>
                         </li>
                         <li >
-                            <a title="Tin Tức" href="{{route('home.news')}}" >Tin Tức</a>
+                            <a title="Tin Tức" href="{{route('client.news')}}" >Tin Tức</a>
                         </li>
                         <li >
-                            <a title="Liên Hệ" href="{{route('home.contact')}}" >Liên Hệ</a>
+                            <a title="Liên Hệ" href="{{route('client.contact')}}" >Liên Hệ</a>
                         </li>
                         <li >
-                            <a title="Thành Viên" href="{{route('home.staff')}}" >Nhân Viên</a>
+                            <a title="Thành Viên" href="{{route('staffs.login')}}" >Thành Viên</a>
+                        </li>
+                        <li >
+                            <a title="Tìm Kiếm" href="{{route('client.searchBooking')}}" >Tìm Kiếm</a>
                         </li>
                     </ul>
                 </div>
@@ -91,9 +85,72 @@
             <div class="container" id="body">
                 <div class="row">
                 </div>
-                <div>
                     <div class="row">
-                        <div class="col-sm-18 col-md-19 col-sm-push-6 col-md-push-5" id="col-right">
+                        <div class="col-sm-18 col-md-19 col-sm-push-6 col-md-push-3" id="col-right">
+                            <div class="news_column">
+                                <div class="panel panel-default">
+                                    <div class="panel-body featured">
+                                        <a href="https://www.24h.com.vn/bong-da/lo-dien-nhom-hlv-ngoai-hang-anh-nguy-co-ra-duong-ten-hag-pochettino-gop-mat-c48a1514809.html" title="CHUNG TAY ĐÁNH BAY COVID" >
+                                            <img  alt="CHUNG TAY ĐÁNH BAY COVID" src="https://icdn.24h.com.vn/upload/4-2023/images/2023-10-31/255x170/pochettino-ten-hag-13002161-495-1698746680-562-width740height495.jpg" width="150" class="img-thumbnail pull-left imghome" /></a>
+                                        <h2>
+                                            <a href="https://www.24h.com.vn/bong-da/lo-dien-nhom-hlv-ngoai-hang-anh-nguy-co-ra-duong-ten-hag-pochettino-gop-mat-c48a1514809.html"
+                                               title="Lộ diện nhóm HLV Ngoại hạng Anh nguy cơ ra đường: Ten Hag & Pochettino góp mặt" >
+                                                Lộ diện nhóm HLV Ngoại hạng Anh nguy cơ "ra đường": Ten Hag & Pochettino góp mặt
+                                            </a>
+                                        </h2>
+                                        <div class="text-muted">
+                                            <ul class="list-unstyled list-inline">
+                                                <li>
+                                                    <em class="fa fa-clock-o">&nbsp;</em> 01/11/2023 03:07:00 PM
+                                                </li>
+                                                <li>
+                                                    <em class="fa fa-eye">&nbsp;</em> Đã xem: 1111
+                                                </li>
+                                                <li>
+                                                    <em class="fa fa-comment-o">&nbsp;</em> Phản hồi: 103
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <a href="https://www.24h.com.vn/bong-da/tien-dao-co-tan-dung-tot-nhat-ngoai-hang-anh-son-heung-min-so-1-rashford-hojlund-kem-nhat-c48a1514835.html" title="Tiền đạo có tận dụng tốt nhất Ngoại hạng Anh: Son Heung Min số 1, Rashford - Hojlund kém nhất" >
+                                            <img  alt="Tiền đạo có tận dụng tốt nhất Ngoại hạng Anh: Son Heung Min số 1, Rashford - Hojlund kém nhất"
+                                                  src="https://icdn.24h.com.vn/upload/4-2023/images/2023-10-31/3-495-1698752533-487-width740height495.jpg" width="150" class="img-thumbnail pull-left imghome" /></a>
+                                        <h3>
+                                            <a href="https://www.24h.com.vn/bong-da/tien-dao-co-tan-dung-tot-nhat-ngoai-hang-anh-son-heung-min-so-1-rashford-hojlund-kem-nhat-c48a1514835.html" title="Tiền đạo có tận dụng tốt nhất Ngoại hạng Anh: Son Heung Min số 1, Rashford - Hojlund kém nhất" >
+                                                Tiền đạo có tận dụng tốt nhất Ngoại hạng Anh: Son Heung Min số 1, Rashford - Hojlund kém nhất
+                                            </a>
+                                        </h3>
+                                        <div class="text-muted">
+                                            <ul class="list-unstyled list-inline">
+                                                <li><em class="fa fa-clock-o">&nbsp;</em> 26/10/2023 06:21:00 PM</li>
+                                                <li><em class="fa fa-eye">&nbsp;</em> Đã xem: 1215</li>
+                                                <li><em class="fa fa-comment-o">&nbsp;</em> Phản hồi:250 </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <a href="https://www.24h.com.vn/bong-da/truc-tiep-trao-giai-qua-bong-vang-2023-hoi-hop-dua-song-ma-messi-haaland-c48a1514494.html" title="Trao giải Quả bóng vàng 2023: Messi được vinh danh vô cùng rực rỡ" >
+                                            <img  alt="Trao giải Quả bóng vàng 2023: Messi được vinh danh vô cùng rực rỡ"
+                                                  src="https://icdn.24h.com.vn/upload/4-2023/images/2023-10-31/255x170/1698702248-541-thumbnail-width740height495_anh_cat_3_2.jpg" width="150" class="img-thumbnail pull-left imghome" /></a>
+                                        <h3>
+                                            <a href="https://www.24h.com.vn/bong-da/truc-tiep-trao-giai-qua-bong-vang-2023-hoi-hop-dua-song-ma-messi-haaland-c48a1514494.html" title="Trao giải Quả bóng vàng 2023: Messi được vinh danh vô cùng rực rỡ" >
+                                                Trao giải Quả bóng vàng 2023: Messi được vinh danh vô cùng rực rỡ
+                                            </a>
+                                        </h3>
+                                        <div class="text-muted">
+                                            <ul class="list-unstyled list-inline">
+                                                <li><em class="fa fa-clock-o">&nbsp;</em> 31/10/2023 10:37:00 PM</li>
+                                                <li><em class="fa fa-eye">&nbsp;</em> Đã xem: 1037</li>
+                                                <li><em class="fa fa-comment-o">&nbsp;</em> Phản hồi:653 </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
                             <div class="col-sm-6 col-md-5 col-sm-pull-18 col-md-pull-19">
                                 <div class="row">
                                     <div class="fixed-right">
@@ -109,7 +166,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>>
+                        </div>
                     </div>
                 </div>
             </div>

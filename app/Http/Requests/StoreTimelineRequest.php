@@ -24,9 +24,9 @@ class StoreTimelineRequest extends FormRequest
     public function rules()
     {
         return [
-            'timeline_start' => ['required'],
-            'timeline_end' => ['required'],
-            'timeline_price'=>['required','numeric','min:0'],
+            'timeline_start' => ['required', 'before:timeline_end', 'unique:timelines,timeline_start,' ],
+            'timeline_end' => ['required', 'after:timeline_start', 'unique:timelines,timeline_end,'],
+            'timeline_price'=>['required','numeric'],
         ];
     }
 
@@ -35,9 +35,13 @@ class StoreTimelineRequest extends FormRequest
         return [
             'timeline_start.required' => 'Vui lòng nhập thời gian bắt đầu',
             'timeline_end.required' => 'Vui lòng nhập thời gian kết thúc',
+            'timeline_start.before' => 'Thời gian bắt đầu phải trước thời gian kết thúc',
+            'timeline_end.after' => 'Thời gian kết thúc phải sau thời gian bắt đầu',
+            'timeline_start.unique' => 'Thời gian bắt đầu đã tồn tại',
+            'timeline_end.unique' => 'Thời gian kết thúc đã tồn tại',
             'timeline_price.required' => 'Vui lòng nhập giá sân',
             'timeline_price.numeric' => 'Giá sân phải là số',
-            'timeline_price.min' => 'Giá sân phải lớn hơn 0',
+
         ];
     }
 }

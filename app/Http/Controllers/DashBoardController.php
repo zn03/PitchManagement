@@ -30,6 +30,7 @@ class DashBoardController extends Controller
             ->join('staffs', 'staffs.id', '=', 'bookings.staff_id')
             ->select('bookings.*', 'booking_details.*', 'pitches.*', 'pitch_types.*', 'timelines.*', 'customers.*', 'staffs.*')
             ->orderBy('bookings.id', 'desc')
+            ->limit(8)
             ->get();
         $count_booking = count($bookings);
 

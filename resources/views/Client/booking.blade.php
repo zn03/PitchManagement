@@ -55,31 +55,25 @@
                 <div class="row">
                     <ul class="slimmenu fl">
                         <li>
-                            <a ></a>
-                        </li>
-                        <li>
-                            <a></a>
-                        </li>
-                        <li>
-                            <a></a>
-                        </li>
-                        <li>
-                            <a title="Trang Chủ" href="{{route('home.index')}}"><em class="fa fa-lg fa-home"></em> Trang Chủ</a>
+                            <a title="Trang Chủ" href="{{route('client.index')}}"><em class="fa fa-lg fa-home"></em> Trang Chủ</a>
                         </li>
                         <li >
-                            <a title="Đặt Sân" href="{{route('home.booking')}}" >Đặt Sân</a>
+                            <a title="Đặt Sân" href="{{route('client.booking')}}" >Đặt Sân</a>
                         </li>
                         <li>
-                            <a title="Giới Thiệu" href="{{route('home.about')}}" >Giới Thiệu</a>
+                            <a title="Giới Thiệu" href="{{route('client.about')}}" >Giới Thiệu</a>
                         </li>
                         <li >
-                            <a title="Tin Tức" href="{{route('home.news')}}" >Tin Tức</a>
+                            <a title="Tin Tức" href="{{route('client.news')}}" >Tin Tức</a>
                         </li>
                         <li >
-                            <a title="Liên Hệ" href="{{route('home.contact')}}" >Liên Hệ</a>
+                            <a title="Liên Hệ" href="{{route('client.contact')}}" >Liên Hệ</a>
                         </li>
                         <li >
-                            <a title="Thành Viên" href="{{route('home.staff')}}" >Nhân Viên</a>
+                            <a title="Thành Viên" href="{{route('staffs.login')}}" >Thành Viên</a>
+                        </li>
+                        <li >
+                            <a title="Tìm Kiếm" href="{{route('client.searchBooking')}}" >Tìm Kiếm</a>
                         </li>
                     </ul>
                 </div>
@@ -93,7 +87,7 @@
                 </div>
                 <div>
                     <div class="row">
-                        <div class="col-sm-18 col-md-19 col-sm-push-6 col-md-push-5" id="col-right">
+                        <div class="col-sm-18 col-md-19 col-sm-push-6 col-md-push-3" id="col-right">
                             <h1>Đặt sân</h1>
                             <div class="panel panel-default panel-bds-post">
                                 <div class="panel-body">
@@ -103,31 +97,43 @@
                                             <label>Bạn muốn đặt sân, vui lòng <span class="guide-pro">Chọn ngày</span> và <span class="guide-pro">Xem khung giờ trống</span>!</label>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-6 control-label">Tên Khách Hàng:  <span class="text-danger">(*)</span>:</label>
+                                            <label class="col-sm-6 control-label">Tên Khách Hàng  <span class="text-danger">(*)</span>:</label>
                                             <div class="col-sm-18 col-lg-12">
                                                 <input type="text" name="customer_name"  class="form-control" maxlength="250">
+                                                @if($errors->has('customer_name'))
+                                                    <span class="text-danger">{{$errors->first('customer_name')}}</span>
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-6 control-label">Tên đội: <span class="text-danger">(*)</span></label>
+                                            <label class="col-sm-6 control-label">Tên đội <span class="text-danger">(*)</span></label>
                                             <div class="col-sm-18 col-lg-12">
                                                 <input type="text" name="customer_nameclub" value="" class="form-control" maxlength="250">
+                                                @if($errors->has('customer_nameclub'))
+                                                    <span class="text-danger">{{$errors->first('customer_nameclub')}}</span>
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-6 control-label">Điện thoại: <span class="text-danger">(*)</span>:</label>
+                                            <label class="col-sm-6 control-label">Điện thoại <span class="text-danger">(*)</span>:</label>
                                             <div class="col-sm-18 col-lg-12">
                                                 <input type="text" name="customer_phone"  class="form-control" maxlength="100">
+                                                @if($errors->has('customer_phone'))
+                                                    <span class="text-danger">{{$errors->first('customer_phone')}}</span>
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-6 control-label">Ngày đặt <span class="text-danger">(*)</span>:</label>
                                             <div class="col-sm-18 col-lg-12">
                                                 <input type="date" name="booking_date" id="booking_date" class="form-control d-inline-block w-120 mr-1" maxlength="10">
+                                                @if($errors->has('booking_date'))
+                                                    <span class="text-danger">{{$errors->first('booking_date')}}</span>
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-6 control-label">Thời Gian: <span class="text-danger">(*)</span>:</label>
+                                            <label class="col-sm-6 control-label">Thời Gian <span class="text-danger">(*)</span>:</label>
                                             <div class="col-sm-18 col-lg-12">
                                                 <select name="timeline_id" id="timeline_id" class="form-control">
                                                     @foreach($timelines as $timeline)
@@ -139,7 +145,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-6 control-label">Chọn sân: <span class="text-danger">(*)</span>:</label>
+                                            <label class="col-sm-6 control-label">Chọn sân <span class="text-danger">(*)</span>:</label>
                                             <div class="col-sm-18 col-lg-12">
                                                 <div class="form-inline">
                                                     <select name="pitch_id" id="pitch_id" class="form-control">

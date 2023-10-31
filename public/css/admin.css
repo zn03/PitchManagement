@@ -311,6 +311,42 @@ form input{
 .details .recentOrders table tr td:nth-child(3) {
     text-align: center;
 }
+.button a:hover {
+    background: #03A9F4 !important;
+    color: white !important;
+    border-radius:5px;
+
+}
+.button {
+    width: fit-content;
+    padding: 0.5em 1em;
+    text-align: center;
+    float: inherit;
+    margin: 0em auto;
+    color: #ffffff;
+    background: #00000026;
+    border-radius:5px;
+}
+
+.button a:link, .button a:visited {
+    width: fit-content;
+    padding: 0.5em 1em;
+    text-align: center;
+    float: inherit;
+    margin: 0em auto;
+    color: #ffffff;
+    background: #00000026;
+    border-radius:5px;
+}
+.status.waiting {
+    padding: 2px 4px;
+    background: grey;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
 .status.delivered {
     padding: 2px 4px;
     background: #8de02c;

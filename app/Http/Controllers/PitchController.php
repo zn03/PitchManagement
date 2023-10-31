@@ -90,6 +90,7 @@ class PitchController extends Controller
     {
         if ($request->validated()) {
             $pitch->update($request->all());
+            flash()->addSuccess('Cập nhật thành công');
             return Redirect::route('pitches.index');
         } else {
             return Redirect::back();

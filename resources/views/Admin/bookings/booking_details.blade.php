@@ -7,7 +7,9 @@
           integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Thời Gian | Quản Lý Bán Hàng</title>
+    <title> Lịch Đặt Sân | Quản Lý Bán Hàng</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+          integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -15,9 +17,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="{{asset('css/fontawesome-free-6.4.2-web/css/all.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/admin.css')}}">
-
+    <link rel="stylesheet" href="{{asset('css/fontawesome-free-6.4.2-web/css/all.min.css')}}">
     <script type="text/javascript">
         //Phân Trang Cho Table
         function Pager(tableName, itemsPerPage) {
@@ -98,25 +99,24 @@
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                 <i class="fas fa-bars"></i>
             </button>
-            <a class="navbar-brand" href="{{route('timelines.index')}}"><i class="fa fa-user-circle" aria-hidden="true"></i> QUẢN
-                LÝ THỜI GIAN</a>
+            <a class="navbar-brand" href="{{route('bookings.index')}}"><i class="fa fa-user-circle" aria-hidden="true"></i> QUẢN
+                LÝ LỊCH ĐẶT SÂN</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
                 <li ><a href="{{route('dashboard.index')}}" data-toggle="tooltip" data-placement="bottom" title="DASHBOARD">DASHBOARD</a></li>
-                <li><a href="{{route('bookings.index')}}" data-toggle="tooltip" data-placement="bottom" title="LỊCH ĐẶT SÂN">LỊCH ĐẶT SÂN</a></li>
+                <li class="active"><a href="{{route('bookings.index')}}" data-toggle="tooltip" data-placement="bottom" title="LỊCH ĐẶT SÂN">LỊCH ĐẶT SÂN</a></li>
                 <li><a href="{{route('customers.index')}}" data-toggle="tooltip" data-placement="bottom" title="KHÁCH HÀNG">KHÁCH HÀNG</a></li>
                 <li ><a href="{{route('staffs.index')}}" data-toggle="tooltip" data-placement="bottom" title="NHÂN VIÊN">NHÂN VIÊN</a></li>
-                <li class="active"><a href="{{route('timelines.index')}}" data-toggle="tooltip" data-placement="bottom" title="THỜI GIAN">THỜI GIAN</a></li>
-                <li><a href="{{route('pitch_types.index')}}" data-toggle="tooltip" data-placement="bottom" title="LOẠI SÂN">LOẠI SÂN</a></li>
-                <li><a href="{{route('pitches.index')}}" data-toggle="tooltip" data-placement="bottom" title="SÂN">SÂN</a></li>
+                <li ><a href="{{route('timelines.index')}}" data-toggle="tooltip" data-placement="bottom" title="THỜI GIAN">THỜI GIAN</a></li>
+                <li ><a href="{{route('pitch_types.index')}}" data-toggle="tooltip" data-placement="bottom" title="LOẠI SÂN">LOẠI SÂN</a></li>
+                <li ><a href="{{route('pitches.index')}}" data-toggle="tooltip" data-placement="bottom" title="SÂN">SÂN</a></li>
                 <li><a  data-toggle="tooltip" data-placement="bottom" title="TÀI KHOẢN">Tài Khoản</a>
                     <ul class="dropdown">
                         <li><a href="{{route('staffs.logout')}}" data-toggle="tooltip" data-placement="bottom"
                                title="ĐĂNG XUẤT"><b>Đăng xuất <i class="fas fa-sign-out-alt"></i></b></a></li>
                     </ul>
                 </li>
-
             </ul>
         </div>
     </div>
@@ -124,37 +124,85 @@
 <div class="container-fluid al">
     <div id="clock"></div>
     <Br>
+    <div class="table-title">
+        <div class="row">
+        </div>
+    </div>
 
-    <div class="container-fluid">
+    <div class="row g-4">
+        <div class="col-lg-4 col-3">
+            <h3 class="fw-bold mb-4">Lịch Đặt Số {{$booking_id->id}} </h3>
+        </div>
+        <div class="col-lg-4 col-3">
+            @foreach($customers as $customer) @endforeach
+            <h6 class=" text-muted mb-1 text-uppercase fw-semibold mb-3">Thông Tin Khách Hàng</h6>
+            <p class="" >Tên: {{$customer->customer_name }}</p>
+            <p class="" >Tên Đội: {{$customer->customer_nameclub }}</p>
+            <p class=""><span>Số Điện Thoại: </span><span id="shipping-phone-no">{{$customer->customer_phone }}</span></p>
+        </div>
+
+        <div class="col-lg-4 col-3">
+            <p class="text-muted mb-1 text-uppercase fw-medium fs-14">Trạng Thái Lịch Đặt</p>
+            @if($booking_id->booking_status == 0)
+                <span class="status waiting " >Chờ Xác Nhận</span>
+            @elseif($booking_id->booking_status == 1)
+                <span class="status inProgress ">Đã Đặt</span>
+            @elseif($booking_id->booking_status == 2)
+                <span class="status pending ">Đang Đá</span>
+            @elseif($booking_id->booking_status == 3)
+                <span class="status delivered">Đã Hoàn Thành</span>
+            @elseif($booking_id->booking_status == 4)
+                <span class="status return ">Đã Hủy</span>
+            @endif
+        </div>
+
     </div>
-    <div class="container">
-        <form action="{{ route('timelines.update', $timeline)}}" method="post" enctype="multipart/form-data" >
-            @csrf
-            @method('PUT')
-            <div>
-                <label  class="form-label">Thời Gian Bắt Đầu: </label>
-                <input type="time" class="form-control" id="timeline_start" name="timeline_start"  value="{{$timeline->timeline_start}}">
-                @if($errors->has('timeline_start'))
-                    <span class="text-danger">{{$errors->first('timeline_start')}}</span>
-                @endif
-            </div>
-            <div>
-                <label  class="form-label">Thời Gian Kết Thúc:  </label>
-                <input type="time" class="form-control" id="timeline_end" name="timeline_end" value="{{$timeline->timeline_end}}" >
-                @if($errors->has('timeline_end'))
-                    <span class="text-danger">{{$errors->first('timeline_end')}}</span>
-                @endif
-            </div>
-            <div>
-                <label  class="form-label">Giá Tiền Theo Thời Gian: </label>
-                <input type="text" class="form-control" id="timeline_price" name="timeline_price" value="{{$timeline->timeline_price}}" >
-                @if($errors->has('timeline_price'))
-                    <span class="text-danger">{{$errors->first('timeline_price')}}</span>
-                @endif
-            </div>
-            <button type="submit" class="btn btn-primary">Sửa</button>
-        </form>
+    <div class="panel-body">
+        <table class="table table-striped table-bordered" id="myTable">
+            <thead>
+            <tr class="ex">
+                <th width="auto">Sân Số</th>
+                <th width="auto">Ngày</th>
+                <th width="auto">Thời Gian</th>
+                <th width="auto">Giá Sân </th>
+                <th width="auto">Tính Năng</th>
+                <th width="auto">Khác</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($bookings as $booking)
+                <tr>
+                    <td>
+                        {{ $booking->pitch_number }} - Loại  {{ $booking->pitchtype_name }}
+                    </td>
+                    <td>
+                         {{ $booking->booking_date }}
+                    </td>
+                    <td>
+                        {{ $booking->timeline_start }} - {{ $booking->timeline_end }}
+                    </td>
+                    <td>
+                        {{number_format($booking->current_price, 0, ',', '.')}} VND
+                    </td>
+                    <td>
+                        @if($booking->booking_status == 0)
+                            <a href="{{route('bookings.confirm',$booking_id)}}"><button class="btn btn-primary" type="submit">Xác Nhận</button></a>
+                            <a href="{{route('bookings.cancelBooking', $booking_id)}}"><button class="btn btn-danger" type="submit">Hủy</button></a>
+                        @elseif($booking->booking_status == 1)
+                            <a href="{{route('bookings.inProgess', $booking_id)}}"><button class="btn btn-warning" type="submit">Đang Đá</button></a>
+                            <a href="{{route('bookings.cancelBooking',$booking_id)}}"><button class="btn btn-danger" type="submit">Hủy</button></a>
+                        @elseif($booking->booking_status == 2 )
+                            <a href="{{route('bookings.completeBooking', $booking_id)}}"><button class="btn btn-success" type="submit">Đã Hoàn Thành</button></a>
+                        @elseif($booking->booking_status == 3)
+{{--                            <a href="{{route('bookings.deleteBooking', $booking_id)}}"><button class="btn btn-danger" type="submit">Xoá</button></a>--}}
+                        @endif
+                    </td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
     </div>
+
     <div id="pageNavPosition" class="text-right"></div>
     <script type="text/javascript">
         var pager = new Pager('myTable', 5);
@@ -176,21 +224,7 @@
 </div>
 <script src="jquery.min.js"></script>
 <script type="text/javascript">
-    //Tìm kiếm
-    function myFunction() {
-        var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("myInput");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("myTable");
-        tr = table.getElementsByTagName("tr");
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[0];
-            if (td) {
-                txtValue = td.textContent || td.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";  }}}}
+
     //Thời Gian
     function time() {
         var today = new Date();

@@ -13,12 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('Admin/customers/')->group(function(){
+Route::middleware('checkLoginStaff')->prefix('Admin/customers/')->group(function(){
     Route::get('/', [\App\Http\Controllers\CustomerController::class, 'index'])->name('customers.index');
     Route::delete('/{customer}', [\App\Http\Controllers\CustomerController::class, 'destroy'])->name('customers.destroy');
 });
 
-Route::prefix('Admin/staffs/')->group(function(){
+Route::middleware('checkLoginStaff')->prefix('Admin/staffs/')->group(function(){
     Route::get('/', [\App\Http\Controllers\StaffController::class, 'index'])->name('staffs.index');
     Route::get('/create', [\App\Http\Controllers\StaffController::class, 'create'])->name('staffs.create');
     Route::post('/create', [\App\Http\Controllers\StaffController::class, 'store'])->name('staffs.store');
@@ -28,7 +28,7 @@ Route::prefix('Admin/staffs/')->group(function(){
 
 });
 
-Route::prefix('Admin/pitches/')->group(function(){
+Route::middleware('checkLoginStaff')->prefix('Admin/pitches/')->group(function(){
     Route::get('/', [\App\Http\Controllers\PitchController::class, 'index'])->name('pitches.index');
     Route::get('/create', [\App\Http\Controllers\PitchController::class, 'create'])->name('pitches.create');
     Route::post('/create', [\App\Http\Controllers\PitchController::class, 'store'])->name('pitches.store');
@@ -38,7 +38,7 @@ Route::prefix('Admin/pitches/')->group(function(){
 
 });
 
-Route::prefix('Admin/pitch_types/')->group(function(){
+Route::middleware('checkLoginStaff')->prefix('Admin/pitch_types/')->group(function(){
     Route::get('/', [\App\Http\Controllers\PitchTypeController::class, 'index'])->name('pitch_types.index');
     Route::get('/create', [\App\Http\Controllers\PitchTypeController::class, 'create'])->name('pitch_types.create');
     Route::post('/create', [\App\Http\Controllers\PitchTypeController::class, 'store'])->name('pitch_types.store');
@@ -47,7 +47,7 @@ Route::prefix('Admin/pitch_types/')->group(function(){
     Route::delete('/{pitchType}/destroy', [\App\Http\Controllers\PitchTypeController::class, 'destroy'])->name('pitch_types.destroy');
 });
 
-Route::prefix('Admin/timelines/')->group(function(){
+Route::middleware('checkLoginStaff')->prefix('Admin/timelines/')->group(function(){
     Route::get('/', [\App\Http\Controllers\TimelineController::class, 'index'])->name('timelines.index');
     Route::get('/create', [\App\Http\Controllers\TimelineController::class, 'create'])->name('timelines.create');
     Route::post('/create', [\App\Http\Controllers\TimelineController::class, 'store'])->name('timelines.store');
@@ -57,27 +57,36 @@ Route::prefix('Admin/timelines/')->group(function(){
 
 });
 
-Route::prefix('Admin/bookings/')->group(function(){
+Route::middleware('checkLoginStaff')->prefix('Admin/bookings/')->group(function(){
     Route::get('/', [\App\Http\Controllers\BookingController::class, 'index'])->name('bookings.index');
     Route::get('/create', [\App\Http\Controllers\BookingController::class, 'create'])->name('bookings.create');
     Route::post('/create', [\App\Http\Controllers\BookingController::class, 'store'])->name('bookings.store');
     Route::get('/{booking_id}/edit', [\App\Http\Controllers\BookingController::class, 'edit'])->name('bookings.edit');
     Route::put('/{booking_id}/edit', [\App\Http\Controllers\BookingController::class, 'update'])->name('bookings.update');
-    Route::delete('/{booking_id}/destroy', [\App\Http\Controllers\BookingController::class, 'destroy'])->name('bookings.destroy');
+
+    Route::get('/{booking_id}/booking_details', [\App\Http\Controllers\BookingController::class, 'detail'])->name('bookings.detail');
+    Route::get('{booking_id}/confirm', [\App\Http\Controllers\BookingController::class, 'confirm'])->name('bookings.confirm');
+    Route::get('{booking_id}/inProgess', [\App\Http\Controllers\BookingController::class, 'inProgess'])->name('bookings.inProgess');
+    Route::get('{booking_id}/completeBooking', [\App\Http\Controllers\BookingController::class, 'completeBooking'])->name('bookings.completeBooking');
+    Route::get('{booking_id}/cancelBooking', [\App\Http\Controllers\BookingController::class, 'cancelBooking'])->name('bookings.cancelBooking');
 });
 
-Route::get('Admin/dashboard',[\App\Http\Controllers\DashBoardController::class, 'index'] )->name('dashboard.index');
+Route::middleware('checkLoginStaff')->get('Admin/dashboard',[\App\Http\Controllers\DashBoardController::class, 'index'] )->name('dashboard.index');
 
-Route::get('Client/index',[\App\Http\Controllers\ClientIndexController::class, 'index'] )->name('home.index');
-Route::get('Client/about',[\App\Http\Controllers\ClientAboutController::class, 'index'] )->name('home.about');
-Route::get('Client/contact',[\App\Http\Controllers\ClientContactController::class, 'index'] )->name('home.contact');
-Route::get('Client/booking',[\App\Http\Controllers\ClientBookingController::class, 'create'] )->name('home.booking');
-Route::post('Client/booking',[\App\Http\Controllers\ClientBookingController::class, 'store'] )->name('booking.store');
-Route::get('Client/news',[\App\Http\Controllers\ClientNewsController::class, 'index'] )->name('home.news');
-Route::get('Client/staff',[\App\Http\Controllers\ClientStaffController::class, 'index'] )->name('home.staff');
+Route::prefix('Client/')->group(function(){
+    Route::get('index',[\App\Http\Controllers\ClientIndexController::class, 'index'] )->name('client.index');
+    Route::get('about',[\App\Http\Controllers\ClientAboutController::class, 'index'] )->name('client.about');
+    Route::get('contact',[\App\Http\Controllers\ClientContactController::class, 'index'] )->name('client.contact');
+    Route::get('booking',[\App\Http\Controllers\ClientBookingController::class, 'create'] )->name('client.booking');
+    Route::post('booking',[\App\Http\Controllers\ClientBookingController::class, 'store'] )->name('booking.store');
+    Route::get('news',[\App\Http\Controllers\ClientNewsController::class, 'index'] )->name('client.news');
 
-//Route::prefix('Admin/login/')->group(function(){
-//    Route::get('/login', [\App\Http\Controllers\Admin\LoginController::class, 'login'])->name('users.login');
-//    Route::post('/login', [\App\Http\Controllers\Admin\LoginController::class, 'loginProcess'])->name('user.loginProcess');
-//    Route::get('/logout', [\App\Http\Controllers\Admin\LoginController::class, 'logout'])->name('user.logout');
-//});
+    Route::get('/searchBooking', [\App\Http\Controllers\ClientIndexController::class, 'searchBooking'])->name('client.searchBooking');
+    Route::post('/searchBookingProcess', [\App\Http\Controllers\ClientIndexController::class, 'searchBookingProcess'])->name('client.searchBookingProcess');
+});
+
+Route::prefix('Client')->group(function(){
+    Route::get('/login', [\App\Http\Controllers\StaffController::class, 'login'])->name('staffs.login');
+    Route::post('/login', [\App\Http\Controllers\StaffController::class, 'loginProcess'])->name('staffs.loginProcess');
+    Route::get('/logout', [\App\Http\Controllers\StaffController::class, 'logout'])->name('staffs.logout');
+});

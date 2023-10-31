@@ -24,7 +24,7 @@ class StorePitchRequest extends FormRequest
     public function rules()
     {
         return [
-            'pitch_number' => ['required'],
+            'pitch_number' => ['required', 'max:10', 'unique:pitches,pitch_number,' ],
 
         ];
     }
@@ -33,6 +33,7 @@ class StorePitchRequest extends FormRequest
     {
         return [
             'pitch_number.required' => 'Vui lòng nhập số sân',
+            'pitch_number.unique' => 'Số sân đã tồn tại',
         ];
     }
 }

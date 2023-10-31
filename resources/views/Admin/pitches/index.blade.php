@@ -111,7 +111,7 @@
                 <li class="active"><a href="{{route('pitches.index')}}" data-toggle="tooltip" data-placement="bottom" title="SÂN">SÂN</a></li>
                 <li><a  data-toggle="tooltip" data-placement="bottom" title="TÀI KHOẢN">Tài Khoản</a>
                     <ul class="dropdown">
-                        <li><a data-toggle="tooltip" data-placement="bottom"
+                        <li><a href="{{route('staffs.logout')}}" data-toggle="tooltip" data-placement="bottom"
                                title="ĐĂNG XUẤT"><b>Đăng xuất <i class="fas fa-sign-out-alt"></i></b></a></li>
                     </ul>
                 </li>
@@ -159,13 +159,15 @@
                         {{ $pitch->pitchType->pitchtype_name }}
                     </td>
                     <td>
-                        {{ $pitch->pitchType->pitchtype_price }}
+                        {{number_format($pitch->pitchType->pitchtype_price, 0, ',', '.')}} VND
                     </td>
                     <td>
                         @if($pitch->pitch_status == 1)
-                            <b>Còn Sân</b>
-                        @else
-                            <b>Đang Đá</b>
+                            <span class="status inProgress">Đã Đặt</span>
+                        @elseif($pitch->pitch_status == 2)
+                            <span class="status pending ">Đang Đá</span>
+                        @elseif($pitch->pitch_status == 3)
+                            <span class="status delivered">Còn Sân</span>
                         @endif
                     </td>
                     <td>

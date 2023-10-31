@@ -6,6 +6,9 @@ use App\Models\Booking;
 use App\Models\BookingDetail;
 use App\Http\Requests\StoreBookingDetailRequest;
 use App\Http\Requests\UpdateBookingDetailRequest;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ClientIndexController extends Controller
 {
@@ -16,70 +19,42 @@ class ClientIndexController extends Controller
      */
     public function index()
     {
-
-
         return view('Client.index', );
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     */
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreBookingDetailRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreBookingDetailRequest $request)
-    {
-        //
+    public function searchBooking(Request $request){
+        $bookings = Booking::where('id', $request->key)->get();
+        return view('Client.searchBooking',[
+            'bookings' => $bookings,
+        ]);
+    }
+    public function searchBookingProcess(Request $request){
+        $bookings = DB::table('bookings')
+            ->join('booking_details', 'bookings.id', '=', 'booking_details.booking_id')
+            ->join('pitches', 'pitches.id', '=', 'booking_details.pitch_id')
+            ->join('timelines', 'timelines.id', '=', 'bookings.timeline_id')
+            ->join('customers', 'customers.id', '=', 'bookings.customer_id')
+            ->select('bookings.*',
+                'customers.id',
+                'customers.customer_name',
+                'customers.customer_phone',
+                'customers.customer_nameclub',
+                'timelines.timeline_start',
+                'timelines.timeline_end',
+                'booking_details.current_price',
+                'pitches.pitch_number'
+                )
+            ->where('customers.customer_phone', $request->input('customer_phone'))
+            ->get();
+        $formattedBookings = [];
+        foreach ($bookings as $booking) {
+            $formattedBooking = $booking;
+            $formattedBooking->booking_date = Carbon::parse($booking->booking_date)->format('d-m-Y');
+            $formattedBookings[] = $formattedBooking;
+        }
+        return view('Client.searchBooking',[
+            'bookings' => $bookings,
+        ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\BookingDetail  $bookingDetail
-     * @return \Illuminate\Http\Response
-     */
-    public function show(BookingDetail $bookingDetail)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\BookingDetail  $bookingDetail
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(BookingDetail $bookingDetail)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateBookingDetailRequest  $request
-     * @param  \App\Models\BookingDetail  $bookingDetail
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateBookingDetailRequest $request, BookingDetail $bookingDetail)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\BookingDetail  $bookingDetail
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(BookingDetail $bookingDetail)
-    {
-        //
-    }
 }

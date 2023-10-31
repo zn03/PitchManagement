@@ -17,7 +17,11 @@ class StaffFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'staff_name' => $this->faker->name,
+            'staff_phone' => $this->faker->numberBetween('0', '10000000'),
+            'staff_address' => $this->faker->address,
+            'email' => $this->faker->email,
+            'password'=> bcrypt('123456'),
         ];
     }
 }

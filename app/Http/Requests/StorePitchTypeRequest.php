@@ -24,7 +24,7 @@ class StorePitchTypeRequest extends FormRequest
     public function rules()
     {
         return [
-            'pitchtype_name' => ['required',],
+            'pitchtype_name' => ['required', 'max:10', 'unique:pitchtypes,pitchtype_name,'],
             'pitchtype_price' => ['required','numeric','min:0'],
 
         ];
@@ -37,6 +37,8 @@ class StorePitchTypeRequest extends FormRequest
             'pitchtype_price.required' => 'Vui lòng nhập giá sân',
             'pitchtype_price.numeric' => 'Giá sân phải là số',
             'pitchtype_price.min' => 'Giá sân phải lớn hơn 0',
+            'pitchtype_name.unique' => 'Tên loại sân đã tồn tại',
+
         ];
     }
 }

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreBookingRequest extends FormRequest
+class StoreClientBookingRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,7 @@ class StoreBookingRequest extends FormRequest
         return [
             'booking_date' => ['required', 'date'],
             'customer_name' => ['required'],
-            'customer_phone' => ['required', 'unique:customers,customer_phone,'],
+            'customer_phone' => ['required'],
             'customer_nameclub'=>['required'],
         ];
     }
@@ -39,7 +39,6 @@ class StoreBookingRequest extends FormRequest
             'customer_name.required' => 'Vui lòng nhập tên khách hàng',
             'customer_phone.required'=> 'Vui lòng nhập số điện thoại',
             'customer_nameclub.required'=> 'Vui lòng nhập tên đội',
-            'customer_phone.unique' => 'Số điện thoại đã tồn tại',
             'customer_phone.max' => 'Số điện thoại không được vượt quá 10 ký tự',
 
         ];

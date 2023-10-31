@@ -88,7 +88,7 @@ class BookingController extends Controller
            $booking = Arr::add($booking, 'staff_id', $request->staff_id);
            $booking = Arr::add($booking, 'timeline_id', $request->timeline_id);
            $booking = Arr::add($booking, 'booking_date', $request->booking_date);
-           $booking = Arr::add($booking, 'booking_status', $request->booking_status);
+           $booking = Arr::add($booking, 'booking_status', '1');
            $booking = Arr::add($booking, 'booking_note', $request->booking_note);
            $booking = Booking::create($booking);
 
@@ -116,6 +116,7 @@ class BookingController extends Controller
            flash()->addSuccess('Thêm mới thành công');
            return Redirect::route('bookings.index');
        } else
+           flash()->addSuccess('Thêm mới thất bại');
            return Redirect::back();
     }
 
@@ -183,11 +184,11 @@ class BookingController extends Controller
             $booking = Arr::add($booking, 'staff_id', $request->staff_id);
             $booking = Arr::add($booking, 'timeline_id', $request->timeline_id);
             $booking = Arr::add($booking, 'booking_date', $request->booking_date);
-            $booking = Arr::add($booking, 'booking_status', $request->booking_status);
             $booking = Arr::add($booking, 'booking_note', $request->booking_note);
 
             $booking = Booking::where('id', $request->booking_id)->update($booking);
 
+            flash()->addSuccess('Cập nhật thành công');
             return Redirect::route('bookings.index');
         } else
             return Redirect::back();
@@ -202,12 +203,64 @@ class BookingController extends Controller
     public function destroy(Booking $booking, $booking_id)
     {
         $booking = Booking::where('id', $booking_id)->first();
-
-
         $booking->delete();
-
         return Redirect::route('bookings.index');
+    }
 
+    public function detail(Booking $booking_id ): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+    {
+        $bookings = DB::table('bookings')
+            ->join('booking_details', 'bookings.id', '=', 'booking_details.booking_id')
+            ->join('pitches', 'pitches.id', '=', 'booking_details.pitch_id')
+            ->join('pitch_types', 'pitch_types.id', '=', 'pitches.pitch_type_id')
+            ->join('timelines', 'timelines.id', '=', 'bookings.timeline_id')
+            ->join('customers', 'customers.id', '=', 'bookings.customer_id')
+            ->join('staffs', 'staffs.id', '=', 'bookings.staff_id')
+            ->select('bookings.*', 'booking_details.*', 'pitches.*', 'pitch_types.*', 'timelines.*', 'customers.*', 'staffs.*')
+            ->where('bookings.id', $booking_id->id)
+            ->get();
+        $formattedBookings = [];
+        foreach ($bookings as $booking) {
+            $formattedBooking = $booking;
+            $formattedBooking->booking_date = Carbon::parse($booking->booking_date)->format('d-m-Y');
+            $formattedBookings[] = $formattedBooking;
+        }
 
+        $customers = DB::table('customers')
+            ->select('customers.*')
+            ->where('customers.id', '=', $booking_id->customer_id)
+            ->get();
+
+        $booking_id = Booking::where('id', $booking_id->id)->first();
+
+        $booking_detail = DB::table('bookings')
+            ->join('booking_details', 'bookings.id', '=', 'booking_details.booking_id')
+            ->where('booking_details.booking_id', '=', $booking_id->id)
+            ->get();
+
+        return view('Admin.bookings.booking_details', [
+                'customers' => $customers,
+                'booking_detail' => $booking_detail,
+                'booking_id' => $booking_id,
+                'bookings' => $bookings,
+
+            ]);
+    }
+    public function confirm(Booking $booking_id){
+        Booking::where('id', $booking_id->id)->update(['booking_status' => 1]);
+        return Redirect::route('bookings.detail', $booking_id->id);
+    }
+    public function inProgess(Booking $booking_id){
+        Booking::where('id', $booking_id->id)->update(['booking_status' => 2]);
+        return Redirect::route('bookings.detail', $booking_id->id);
+    }
+    public function completeBooking(Booking $booking_id){
+        Booking::where('id', $booking_id->id)->update(['booking_status' => 3]);
+        return Redirect::route('bookings.detail', $booking_id->id);
+
+    }
+    public function cancelBooking(Booking $booking_id){
+        Booking::where('id', $booking_id->id)->update(['booking_status' => 4]);
+        return Redirect::route('bookings.detail', $booking_id->id);
     }
 }

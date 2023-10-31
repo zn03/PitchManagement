@@ -81,9 +81,13 @@ class TimelineController extends Controller
      */
     public function update(UpdateTimelineRequest $request, Timeline $timeline)
     {
-        $timeline->update($request->all());
-        flash()->addSuccess('Cập nhật thành công');
-        return Redirect::route('timelines.index');
+        if ($request->validated()) {
+            $timeline->update($request->all());
+            flash()->addSuccess('Cập nhật thành công');
+            return Redirect::route('timelines.index');
+        } else {
+            return Redirect::back();
+        };
     }
 
     /**

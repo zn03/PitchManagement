@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Staff;
 use App\Http\Requests\StoreStaffRequest;
 use App\Http\Requests\UpdateStaffRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
 class StaffController extends Controller
@@ -84,8 +86,13 @@ class StaffController extends Controller
      */
     public function update(UpdateStaffRequest $request, Staff $staff)
     {
-        $staff->update($request->all());
-        return Redirect::route('staffs.index');
+        if ($request->validated()) {
+            $staff->update($request->all());
+            flash()->addSuccess('Cập nhật thành công');
+            return Redirect::route('staffs.index');
+        } else {
+            return Redirect::back();
+        }
     }
 
     /**
@@ -104,5 +111,32 @@ class StaffController extends Controller
             flash()->addSuccess('Xóa thành công');
             return Redirect::route('staffs.index');
         }
+    }
+
+    public function login()
+    {
+        return view('Client.login');
+    }
+
+    public function loginProcess(Request $request)
+    {
+        $account = $request->only(['email', 'password']);
+        if (Auth::guard('staffs')->attempt($account)) {
+            $staff = Auth::guard('staffs')->user();
+            Auth::guard('staffs')->login($staff);
+            session(['staff' => $staff]);
+            flash()->addSuccess('Đăng nhập thành công');
+            return Redirect::route('dashboard.index');
+        } else {
+            flash()->addError('Đăng nhập thất bại');
+            return Redirect::back();
+        }
+    }
+
+    public function logout()
+    {
+        Auth::guard('staffs')->logout();
+        session()->forget('staff');
+        return Redirect::route('client.index');
     }
 }

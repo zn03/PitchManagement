@@ -41,7 +41,7 @@
                 <li class="active"><a href="{{route('pitches.index')}}" data-toggle="tooltip" data-placement="bottom" title="SÂN">SÂN</a></li>
                 <li><a  data-toggle="tooltip" data-placement="bottom" title="TÀI KHOẢN">Tài Khoản</a>
                     <ul class="dropdown">
-                        <li><a href="" data-toggle="tooltip" data-placement="bottom"
+                        <li><a href="{{route('staffs.logout')}}" data-toggle="tooltip" data-placement="bottom"
                                title="ĐĂNG XUẤT"><b>Đăng xuất <i class="fas fa-sign-out-alt"></i></b></a></li>
                     </ul>
                 </li>
@@ -83,21 +83,6 @@
                                 {{$pitchType->pitchtype_name}}
                             </option>
                     @endforeach
-                </select>
-            </div>
-            <br>
-            <div>
-                <label  class="form-label">Trạng Thái Sân:  </label>
-                <select class="form-control" name="pitch_status" id="pitch_status">
-                    <option value="1"
-                        @if($pitch->pitch_status == 1)
-                            {{'selected'}}
-                        @endif
-                    >Còn Sân</option>
-                    <option value="2"
-                        @if($pitch->pitch_status == 2)
-                        @endif
-                    >Đang Sử Dụng</option>
                 </select>
             </div>
             <br>

@@ -24,7 +24,20 @@ class UpdateTimelineRequest extends FormRequest
     public function rules()
     {
         return [
+            'timeline_start' => ['required', 'unique:timelines,timeline_start,' . $this->timeline->id],
+            'timeline_end' => ['required', 'unique:timelines,timeline_end,' . $this->timeline->id],
+            'timeline_price' => ['required'],
+        ];
+    }
 
+    public function messages()
+    {
+        return [
+            'timeline_start.required' => 'Vui lòng nhập thời gian bắt đầu',
+            'timeline_start.unique' => 'Thời gian bắt đầu đã tồn tại',
+            'timeline_end.required' => 'Vui lòng nhập thời gian kết thúc',
+            'timeline_end.unique' => 'Thời gian kết thúc đã tồn tại',
+            'timeline_price.required' => 'Vui lòng nhập giá tiền',
         ];
     }
 }

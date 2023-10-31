@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\UniqueBookingTime;
+use App\Rules\UniqueBookingTimeInDay;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateBookingRequest extends FormRequest

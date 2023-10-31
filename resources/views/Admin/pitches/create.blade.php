@@ -40,7 +40,7 @@
                 <li class="active"><a href="{{route('pitches.index')}}" data-toggle="tooltip" data-placement="bottom" title="SÂN">SÂN</a></li>
                 <li><a  data-toggle="tooltip" data-placement="bottom" title="TÀI KHOẢN">Tài Khoản</a>
                     <ul class="dropdown">
-                        <li><a href="" data-toggle="tooltip" data-placement="bottom"
+                        <li><a href="{{route('staffs.logout')}}" data-toggle="tooltip" data-placement="bottom"
                                title="ĐĂNG XUẤT"><b>Đăng xuất <i class="fas fa-sign-out-alt"></i></b></a></li>
                     </ul>
                 </li>
@@ -84,8 +84,9 @@
             <div>
                 <label  class="form-label"> Trạng Thái Sân:  </label>
                 <select name="pitch_status" id="pitch_status" class="form-control">
-                    <option value="1">Còn Sân</option>
-                    <option value="2">Đang Sử Dụng</option>
+                    <option value="1">Đã Đặt</option>
+                    <option value="2">Đang Đá</option>
+                    <option value="3">Còn Sân</option>
                 </select>
             </div>
             <br>

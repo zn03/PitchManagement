@@ -41,7 +41,7 @@
                 <li ><a href="{{route('pitches.index')}}" data-toggle="tooltip" data-placement="bottom" title="SÂN">SÂN</a></li>
                 <li><a  data-toggle="tooltip" data-placement="bottom" title="TÀI KHOẢN">Tài Khoản</a>
                     <ul class="dropdown">
-                        <li><a href="" data-toggle="tooltip" data-placement="bottom"
+                        <li><a href="{{route('staffs.logout')}}" data-toggle="tooltip" data-placement="bottom"
                                title="ĐĂNG XUẤT"><b>Đăng xuất <i class="fas fa-sign-out-alt"></i></b></a></li>
                     </ul>
                 </li>
@@ -131,21 +131,7 @@
                 </div>
                 <br>
                 <div>
-                    <label  class="form-label">Trạng Thái Sân:  </label>
-                    <select class="form-control" name="booking_status" id="booking_status">
-                        <option value="1" {{ $booking->booking_status == 1 ? 'selected' : '' }}>
-                            Đã Đặt
-                        </option>
-                        <option value="2" {{ $booking->booking_status == 2 ? 'selected' : '' }}>
-                            Đang Đá
-                        </option>
-                        <option value="3" {{ $booking->booking_status == 3 ? 'selected' : '' }}>
-                            Đã Hoàn Thành
-                    </select>
-                </div>
-                <br>
-                <div>
-                    <label  class="form-label">Ghi Chú </label>
+                    <label  class="form-label">Ghi Chú: </label>
                     <input type="text" class="form-control" id="booking_note" name="booking_note"  value="{{$booking->booking_note}}">
                 </div>
                 <button type="submit" class="btn btn-primary">Sửa</button>

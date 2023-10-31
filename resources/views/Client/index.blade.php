@@ -55,31 +55,25 @@
                 <div class="row">
                     <ul class="slimmenu fl">
                         <li>
-                            <a ></a>
-                        </li>
-                        <li>
-                            <a></a>
-                        </li>
-                        <li>
-                            <a></a>
-                        </li>
-                        <li>
-                            <a title="Trang Chủ" href="{{route('home.index')}}"><em class="fa fa-lg fa-home"></em> Trang Chủ</a>
+                            <a title="Trang Chủ" href="{{route('client.index')}}"><em class="fa fa-lg fa-home"></em> Trang Chủ</a>
                         </li>
                         <li >
-                            <a title="Đặt Sân" href="{{route('home.booking')}}" >Đặt Sân</a>
+                            <a title="Đặt Sân" href="{{route('client.booking')}}" >Đặt Sân</a>
                         </li>
                         <li>
-                            <a title="Giới Thiệu" href="{{route('home.about')}}" >Giới Thiệu</a>
+                            <a title="Giới Thiệu" href="{{route('client.about')}}" >Giới Thiệu</a>
                         </li>
                         <li >
-                            <a title="Tin Tức" href="{{route('home.news')}}" >Tin Tức</a>
+                            <a title="Tin Tức" href="{{route('client.news')}}" >Tin Tức</a>
                         </li>
                         <li >
-                            <a title="Liên Hệ" href="{{route('home.contact')}}" >Liên Hệ</a>
+                            <a title="Liên Hệ" href="{{route('client.contact')}}" >Liên Hệ</a>
                         </li>
                         <li >
-                            <a title="Thành Viên" href="{{route('home.staff')}}" >Nhân Viên</a>
+                            <a title="Thành Viên" href="{{route('staffs.login')}}" >Thành Viên</a>
+                        </li>
+                        <li >
+                            <a title="Tìm Kiếm" href="{{route('client.searchBooking')}}" >Tìm Kiếm</a>
                         </li>
                     </ul>
                 </div>
@@ -109,7 +103,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>>
+                        </div>
                     </div>
                 </div>
             </div>

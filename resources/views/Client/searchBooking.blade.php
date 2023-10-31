@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <head>
     <title>Đặt sân</title>
+    <meta name="robots" content="index, archive, follow, noodp">
+    <meta name="googlebot" content="index,archive,follow,noodp">
+    <meta name="msnbot" content="all,index,follow">
+    <meta name="generator" content="NukeViet v4.4">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta property="og:title" content="Đặt sân">
+    <meta property="og:url" content="index.html">
     <link rel="preload" as="script" href="{{asset('js/jquery/jquery.minf361.js?t=1696324888')}}">
     <link rel="preload" as="script" href="{{asset('js/language/vif361.js?t=1696324888')}}">
     <link rel="preload" as="script" href="{{asset('js/globalf361.js?t=1696324888')}}">
@@ -24,24 +29,6 @@
     <link rel="stylesheet" type="text/css" media="screen" href="{{asset('themes/football/css/slimmenuf361.css?t=1696324888')}}" />
     <link type="text/css" href="{{asset('js/jquery-ui/jquery-ui.minf361.css?t=1696324888')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/client.css')}}">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-
-        h1 {
-            font-size: 24px;
-            color: #333;
-        }
-
-        p {
-            font-size: 16px;
-            color: #555;
-        }
-    </style>
 </head>
 
 <body>
@@ -86,7 +73,7 @@
                             <a title="Thành Viên" href="{{route('staffs.login')}}" >Thành Viên</a>
                         </li>
                         <li >
-                            <a title="Tìm Kiếm" href="{{route('client.searchBooking')}}">Tìm Kiếm</a>
+                            <a title="Tìm Kiếm" href="{{route('client.searchBooking')}}" >Tìm Kiếm</a>
                         </li>
                     </ul>
                 </div>
@@ -101,34 +88,76 @@
                 <div>
                     <div class="row">
                         <div class="col-sm-18 col-md-19 col-sm-push-6 col-md-push-3" id="col-right">
-                            <h1>Giới Thiệu Về Sân Bóng</h1>
-                            <p>
-                                Một sân bóng lớn gồm nhiều sân khác nhau là một cơ sở thể thao đa dạng, thường có nhiều sân bóng khác nhau được xây dựng trên cùng một khu đất hoặc trong cùng một cơ sở thể thao. Đây là một sự kết hợp hoàn hảo để đáp ứng nhu cầu của nhiều người tham gia thể thao, từ những trận đấu bóng đá thân mật cho đến các giải đấu và sự kiện thể thao lớn hơn.
-                            </p>
-                            <p>
-                                1. Số lượng sân và đa dạng sân chơi: Sân bóng lớn thường có nhiều sân bóng với kích thước và loại sân khác nhau. Có thể có sân bóng 11 người, sân bóng 7 người, sân bóng 5 người, sân cỏ nhân tạo, sân cỏ tự nhiên, và nhiều loại sân chơi khác. Điều này giúp phục vụ nhu cầu đa dạng của người chơi.
-                            </p>
-                            <p>
-                                2. Cơ sở vật chất: Sân bóng lớn thường được trang bị cơ sở vật chất tốt như ánh sáng chiếu sáng ban đêm, khu vực sân thi đấu rộng rãi, hệ thống lưới bảo vệ để ngăn bóng bay ra ngoài, khán đài cho khán giả và khu vực nghỉ ngơi.
-                            </p>
-                            <p>
-                                3. Sự kiện và giải đấu: Sân bóng lớn thường là nơi tổ chức các sự kiện thể thao lớn như giải bóng đá, giải bóng đá mini, giải thể thao cộng đồng, và các sự kiện thể thao khác. Đây là điểm đến phổ biến cho các đội bóng, câu lạc bộ thể thao, và tổ chức tổ chức giải đấu.
-                            </p>
-                            <p>
-                                4. Đặt sân: Đa số sân bóng lớn cho phép người chơi đặt sân theo lịch trước để đảm bảo rằng họ có thời gian và sân chơi mong muốn.
-                            </p>
-                            <p>
-                                5. Học viện và đào tạo: Nhiều sân bóng lớn cung cấp các khóa học huấn luyện và đào tạo cho người chơi thể thao, bao gồm cả trẻ em và người trưởng thành.
-                            </p>
-                            <p>
-                                6. Tiện ích và dịch vụ đi kèm: Các sân bóng lớn thường có các tiện ích bổ sung như cửa hàng bán đồ thể thao, nhà hàng, quầy bar, phòng thay đồ và vệ sinh.
-                            </p>
-                            <p>
-                                7. Cộng đồng thể thao: Các sân bóng lớn thường là điểm gặp gỡ của cộng đồng thể thao, nơi người dân và người chơi thể thao đến để thể hiện kỹ năng, tận hưởng sự kết nối xã hội và tạo ra những kỷ niệm thú vị.
-                            </p>
-                            <p>
-                                Các sân bóng lớn thường đóng vai trò quan trọng trong việc thúc đẩy thể thao cơ sở và thúc đẩy lối sống lành mạnh. Chúng cung cấp một nền tảng cho người chơi thể thao và cộng đồng để thực hiện thể thao, xây dựng mối quan hệ và tham gia vào các hoạt động thể thao đa dạng.
-                            </p>
+                            <div class="container">
+                                <h1>Tra cứu lịch đặt</h1>
+                                <div class="search-box">
+                                    <form method="post" action="{{route('client.searchBookingProcess')}}">
+                                        @csrf
+                                        <input type="text" name="customer_phone" placeholder="Nhập số điện thoại đặt sân">
+                                        <input type="submit" value="Tra cứu">
+                                    </form>
+                                </div>
+                                <br><br>
+                                <table class="table" id="table_id">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Tên Khách Hàng</th>
+                                        <th scope="col">Điện Thoại</th>
+                                        <th scope="col">Tên Đội</th>
+                                        <th scope="col">Ngày Đặt Sân</th>
+                                        <th scope="col">Giờ Đặt Sân</th>
+                                        <th scope="col">Sân</th>
+                                        <th scope="col">Tổng Tiền</th>
+                                        <th scope="col">Trạng Thái</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($bookings as $booking)
+                                        <tr>
+                                            <th scope="row">
+                                                {{$booking->id}}
+                                            </th>
+                                            <td>
+                                                {{$booking->customer_name}}
+                                            </td>
+                                            <td>
+                                                {{$booking->customer_phone}}
+                                            </td>
+                                            <td>
+                                                {{$booking->customer_nameclub}}
+                                            </td>
+                                            <td>
+                                                {{$booking->booking_date}}
+                                            </td>
+                                            <td>
+                                                {{ $booking->timeline_start }} - {{ $booking->timeline_end }}
+                                            </td>
+                                            <td>
+                                                {{$booking->pitch_number}}
+                                            </td>
+                                            <td>
+                                                {{number_format($booking->current_price, 0, ',', '.')}} VND
+                                            </td>
+                                            <td>
+                                                @if($booking->booking_status == 0)
+                                                    <span class="status waiting " >Chờ Xác Nhận</span>
+                                                @elseif($booking->booking_status == 1)
+                                                    <span class="status inProgress ">Đã Đặt</span>
+                                                @elseif($booking->booking_status == 2)
+                                                    <span class="status pending ">Đang Đá</span>
+                                                @elseif($booking->booking_status == 3)
+                                                    <span class="status delivered">Đã Hoàn Thành</span>
+                                                @elseif($booking->booking_status == 4)
+                                                    <span class="status return ">Đã Hủy</span>
+                                                @endif
+                                            </td>
+
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                             <div class="col-sm-6 col-md-5 col-sm-pull-18 col-md-pull-19">
                                 <div class="row">
                                     <div class="fixed-right">
@@ -206,3 +235,6 @@
 </body>
 
 </html>
+
+
+

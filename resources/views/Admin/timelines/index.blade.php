@@ -111,7 +111,7 @@
                 <li><a href="{{route('pitches.index')}}" data-toggle="tooltip" data-placement="bottom" title="SÂN">SÂN</a></li>
                 <li><a  data-toggle="tooltip" data-placement="bottom" title="TÀI KHOẢN">Tài Khoản</a>
                     <ul class="dropdown">
-                        <li><a href="/index.html" data-toggle="tooltip" data-placement="bottom"
+                        <li><a href="{{route('staffs.logout')}}" data-toggle="tooltip" data-placement="bottom"
                                title="ĐĂNG XUẤT"><b>Đăng xuất <i class="fas fa-sign-out-alt"></i></b></a></li>
                     </ul>
                 </li>
@@ -154,7 +154,7 @@
                         {{ $timeline->timeline_end }}
                     </td>
                     <td>
-                        {{ $timeline->timeline_price }}
+                        {{number_format($timeline->timeline_price, 0, ',', '.')}} VND
                     </td>
                     <td>
                         <a href="{{ route('timelines.edit',$timeline) }}" title="Sửa" data-toggle="tooltip">
@@ -172,7 +172,7 @@
         </table>
     <div id="pageNavPosition" class="text-right"></div>
     <script type="text/javascript">
-        var pager = new Pager('myTable', 5);
+        var pager = new Pager('myTable', 8);
         pager.init();
         pager.showPageNav('pager', 'pageNavPosition');
         pager.showPage(1);

@@ -31,7 +31,7 @@
                 <i class="fas fa-bars"></i>
             </button>
             <a class="navbar-brand" href="{{route('dashboard.index')}}"><i class="fa fa-user-circle" aria-hidden="true"></i> QUẢN
-                LÝ SÂN</a>
+                LÝ </a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
@@ -44,7 +44,7 @@
                 <li ><a href="{{route('pitches.index')}}" data-toggle="tooltip" data-placement="bottom" title="SÂN">SÂN</a></li>
                 <li><a  data-toggle="tooltip" data-placement="bottom" title="TÀI KHOẢN">Tài Khoản</a>
                     <ul class="dropdown">
-                        <li><a data-toggle="tooltip" data-placement="bottom"
+                        <li><a href="{{route('staffs.logout')}}" data-toggle="tooltip" data-placement="bottom"
                                title="ĐĂNG XUẤT"><b>Đăng xuất <i class="fas fa-sign-out-alt"></i></b></a></li>
                     </ul>
                 </li>
@@ -80,7 +80,7 @@
                 <div class="card">
                     <div>
                         <div class="numbers">{{$count_bookingStatus}}</div>
-                        <div class="cardName">Đã Hoàn Thành</div>
+                        <div class="cardName">Lịch Đặt Hoàn Thành</div>
                     </div>
                 </div>
 
@@ -107,7 +107,6 @@
                                 <td>Trạng Thái</td>
                             </tr>
                         </thead>
-
                         <tbody>
                             @foreach($bookings as $booking)
                             <tr>
@@ -119,12 +118,16 @@
                                 </td>
 
                                 <td>
-                                    @if($booking->booking_status == 1)
+                                    @if($booking->booking_status == 0)
+                                        <span class="status waiting " >Chờ Xác Nhận</span>
+                                    @elseif($booking->booking_status == 1)
                                         <span class="status inProgress ">Đã Đặt</span>
                                     @elseif($booking->booking_status == 2)
                                         <span class="status pending ">Đang Đá</span>
                                     @elseif($booking->booking_status == 3)
                                         <span class="status delivered">Đã Hoàn Thành</span>
+                                    @elseif($booking->booking_status == 4)
+                                        <span class="status return ">Đã Hủy</span>
                                     @endif
                                 </td>
                             </tr>

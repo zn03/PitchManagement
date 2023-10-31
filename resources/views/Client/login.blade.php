@@ -12,13 +12,15 @@
 </head>
 
 <body>
+<button class="button"><a href="{{ route('client.index')}}">Quay lại Trang Chủ</a></button>
 <img class="wave" src="{{asset('images/wave.png')}}">
 <div class="container">
     <div class="img">
         <img src="{{asset('images/bg.jpg')}}">
     </div>
     <div class="login-content">
-        <form action="" method="post" role="form">
+        <form action="{{route('staffs.loginProcess')}}" method="post">
+            @csrf
             <img src="{{asset('images/avatar.jpg')}}">
             <h2 class="title">Welcome</h2>
             <div class="input-div one">
@@ -27,7 +29,7 @@
                 </div>
                 <div class="div">
                     <h5>Email</h5>
-                    <input type="text" class="input" name="email">
+                    <input type="email" class="input" name="email">
                 </div>
             </div>
             <div class="input-div pass">
@@ -39,10 +41,13 @@
                     <input type="password" class="input" name="password">
                 </div>
             </div>
-            <input type="submit" class="btn" name="btn" value="Login">
+            <input type="submit" class="btn" name="btn" value="Đăng Nhập">
+
         </form>
+
     </div>
 </div>
+
 <script>
     const inputs = document.querySelectorAll(".input");
 

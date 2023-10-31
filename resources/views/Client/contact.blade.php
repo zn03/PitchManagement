@@ -55,31 +55,25 @@
                 <div class="row">
                     <ul class="slimmenu fl">
                         <li>
-                            <a ></a>
-                        </li>
-                        <li>
-                            <a></a>
-                        </li>
-                        <li>
-                            <a></a>
-                        </li>
-                        <li>
-                            <a title="Trang Chủ" href="{{route('home.index')}}"><em class="fa fa-lg fa-home"></em> Trang Chủ</a>
+                            <a title="Trang Chủ" href="{{route('client.index')}}"><em class="fa fa-lg fa-home"></em> Trang Chủ</a>
                         </li>
                         <li >
-                            <a title="Đặt Sân" href="{{route('home.booking')}}" >Đặt Sân</a>
+                            <a title="Đặt Sân" href="{{route('client.booking')}}" >Đặt Sân</a>
                         </li>
                         <li>
-                            <a title="Giới Thiệu" href="{{route('home.about')}}" >Giới Thiệu</a>
+                            <a title="Giới Thiệu" href="{{route('client.about')}}" >Giới Thiệu</a>
                         </li>
                         <li >
-                            <a title="Tin Tức" href="{{route('home.news')}}" >Tin Tức</a>
+                            <a title="Tin Tức" href="{{route('client.news')}}" >Tin Tức</a>
                         </li>
                         <li >
-                            <a title="Liên Hệ" href="{{route('home.contact')}}" >Liên Hệ</a>
+                            <a title="Liên Hệ" href="{{route('client.contact')}}" >Liên Hệ</a>
                         </li>
                         <li >
-                            <a title="Thành Viên" href="{{route('home.staff')}}" >Nhân Viên</a>
+                            <a title="Thành Viên" href="{{route('staffs.login')}}" >Thành Viên</a>
+                        </li>
+                        <li >
+                            <a title="Tìm Kiếm" href="{{route('client.searchBooking')}}" >Tìm Kiếm</a>
                         </li>
                     </ul>
                 </div>
@@ -93,7 +87,114 @@
                 </div>
                 <div>
                     <div class="row">
-                        <div class="col-sm-18 col-md-19 col-sm-push-6 col-md-push-5" id="col-right">
+                        <div class="col-sm-18 col-md-19 col-sm-push-6 col-md-push-3" id="col-right">
+                            <div class="page">
+                                <div class="well">Để không ngừng nâng cao chất lượng dịch vụ và đáp ứng tốt hơn nữa các nhu cầu của Quý khách, chúng tôi mong muốn nhận được các thông tin phản hồi. Nếu Quý khách có bất kỳ thắc mắc hoặc đóng góp nào, xin vui lòng liên hệ với chúng tôi theo thông tin dưới đây. Chúng tôi sẽ phản hồi lại Quý khách trong thời gian sớm nhất.<br />Trân trọng!</div>
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-14">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h3>Chăm sóc khách hàng</h3>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="margin-bottom">Bộ phận tiếp nhận và giải quyết các yêu cầu, đề nghị, ý kiến liên quan đến hoạt động chính của sân bóng.</div>
+                                                  <p>
+                                                      <em class="fa fa-phone fa-horizon margin-right"></em>Điện thoại:
+                                                      <span><a href="tel:+84365558338" class="black">0918.398.233                        </a></span>
+                                                  </p>
+                                                  <p>
+                                                      <em class="fa fa-envelope fa-horizon margin-right"></em>Email:
+                                                      <span><a href="mailto:duynguyen1112003@gmail.com" class="black">duynguyen1112003@gmail.com</a></span>
+                                                  </p>
+                                                  <p>
+                                                      <span>Zalo: </span> <span>0918.398.233</span>
+                                                  </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-10">
+                                        <div class="panel panel-primary">
+                                            <div class="panel-heading">Gửi phản hồi</div>
+                                            <div class="panel-body loadContactForm"><div class="nv-fullbg">
+                                                    <form method="post" action="" onsubmit="return nv_validForm(this);" novalidate>
+                                                        <div class="form-group">
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <em class="fa fa-folder-open fa-lg fa-horizon">
+                                                                    </em>
+                                                                </span>
+                                                                <select class="form-control" name="fcat">
+                                                                    <option value="0">
+                                                                        Chủ đề bạn quan tâm
+                                                                    </option>
+                                                                    <option value="1">
+                                                                        Tư vấn
+                                                                    </option>
+                                                                    <option value="2">
+                                                                        Khiếu nại, phản ánh
+                                                                    </option>
+                                                                    <option value="3">
+                                                                        Đề nghị hợp tác
+                                                                    </option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <em class="fa fa-file-text fa-lg fa-horizon">
+                                                                    </em>
+                                                                </span>
+                                                                <input type="text" maxlength="255" class="form-control required" value="" name="ftitle" placeholder="Tiêu đề" data-pattern="/^(.){3,}$/" onkeypress="nv_validErrorHidden(this);" data-mess="Vui lòng nhập tiêu đề" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon"><em class="fa fa-user fa-lg fa-horizon"></em></span>
+                                                                <input type="text" maxlength="100" value="" name="fname" class="form-control required" placeholder="Họ và tên" data-pattern="/^(.){3,}$/" onkeypress="nv_validErrorHidden(this);" data-mess="Vui lòng nhập họ và tên" />
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <em class="fa fa-envelope fa-lg fa-horizon"></em>
+                                                                </span>
+                                                                <input type="email" maxlength="60" value="" name="femail" class="form-control required" placeholder="Email" onkeypress="nv_validErrorHidden(this);" data-mess="Vui lòng nhập email khả dụng" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <em class="fa fa-phone fa-lg fa-horizon"></em>
+                                                                </span>
+                                                                <input type="text" maxlength="60" value="" name="fphone" class="form-control" placeholder="Điện thoại" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <em class="fa fa-home fa-lg fa-horizon"></em>
+                                                                </span>
+                                                                <input type="text" maxlength="60" value="" name="faddress" class="form-control" placeholder="Địa chỉ" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <div>
+                                                                <textarea cols="8" name="fcon" class="form-control required" maxlength="1000" placeholder="Nội dung" onkeypress="nv_validErrorHidden(this);" data-mess="Vui lòng nhập nội dung"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="text-center form-group">
+                                                            <input type="submit" value="Gửi đi" name="btsend" class="btn btn-primary" />
+                                                        </div>
+                                                    </form>
+                                                    <div class="contact-result alert"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-sm-6 col-md-5 col-sm-pull-18 col-md-pull-19">
                                 <div class="row">
                                     <div class="fixed-right">
@@ -109,7 +210,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>>
+                        </div>
                     </div>
                 </div>
             </div>
