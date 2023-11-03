@@ -7,8 +7,10 @@ use App\Models\BookingDetail;
 use App\Http\Requests\StoreClientBookingRequest;
 use App\Models\Customer;
 use App\Models\Pitch;
+use App\Models\PitchType;
 use App\Models\Staff;
 use App\Models\Timeline;
+use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Redirect;
 
@@ -21,6 +23,7 @@ class ClientBookingController extends Controller
      */
     public function create()
     {
+        $pitchTypes = PitchType::all();
         $pitches = Pitch::all();
         $timelines = Timeline::all();
         $staffs = Staff::all();
@@ -29,6 +32,7 @@ class ClientBookingController extends Controller
             'pitches' => $pitches,
             'timelines' => $timelines,
             'staffs'=> $staffs,
+            'pitchTypes' => $pitchTypes,
         ]);
     }
 
@@ -92,48 +96,10 @@ class ClientBookingController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\BookingDetail  $bookingDetail
-     * @return \Illuminate\Http\Response
-     */
-    public function show(BookingDetail $bookingDetail)
+    public function getPitch( Request $request ): \Illuminate\Http\JsonResponse
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\BookingDetail  $bookingDetail
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(BookingDetail $bookingDetail)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateBookingDetailRequest  $request
-     * @param  \App\Models\BookingDetail  $bookingDetail
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateBookingDetailRequest $request, BookingDetail $bookingDetail)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\BookingDetail  $bookingDetail
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(BookingDetail $bookingDetail)
-    {
-        //
+        $id = $request -> id;
+        $pitches = Pitch::where('pitch_type_id', $id)->get();
+        return response()->json($pitches);
     }
 }

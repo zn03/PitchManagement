@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="{{asset('css/admin.css')}}">
     <link rel="stylesheet" href="{{asset('css/fontawesome-free-6.4.2-web/css/all.min.css')}}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
 
@@ -97,6 +98,26 @@
             </div>
             <br>
             <div>
+                <label  class="form-label"> Loại Sân: </label>
+                <select name="pitch_types" id="pitch_types" class="form-control">
+                    <option value="">Chọn Loại Sân</option>
+                    @foreach($pitchTypes as $pitchType)
+                        <option value="{{$pitchType->id}}">
+                            {{$pitchType->pitchtype_name}}
+                        </option>
+                    @endforeach
+                </select>
+                </div>
+            <br>
+            <div>
+                <label class="form-label">Sân Số: </label>
+                <select name="pitch_id" id="pitch_id" class="form-control">
+                    <option value="">Chọn Sân</option>
+                </select>
+            </div>
+            <br>
+
+            <div>
                 <label  class="form-label">Ngày: </label>
                 <input type="date"  class="form-control" id="booking_date" name="booking_date"  >
                 @if($errors->has('booking_date'))
@@ -109,17 +130,6 @@
                     @foreach($timelines as $timeline)
                         <option value="{{$timeline->id}}">
                             {{$timeline->timeline_start}} - {{$timeline->timeline_end}}
-                        </option>
-                    @endforeach
-                </select>
-            </div>
-            <br>
-            <div>
-                <label  class="form-label"> Sân Số: </label>
-                <select name="pitch_id" id="pitch_id" class="form-control">
-                    @foreach($pitches as $pitch)
-                        <option value="{{$pitch->id}}">
-                            {{$pitch->pitch_number}} - Loại Sân: {{$pitch->pitchType->pitchtype_name}}
                         </option>
                     @endforeach
                 </select>
@@ -154,6 +164,34 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $('#pitch_types').on('change', function () {
+            var pitch_type_id = $(this).val();
+            if (pitch_type_id) {
+                $.ajax({
+                    url: 'getPitch/' + pitch_type_id,
+                    type: "GET",
+                    data: {"_token": "{{ csrf_token() }}"},
+                    dataType: "json",
+                    success: function (data) {
+                        if (data) {
+                            $('#pitch_id').empty();
+                            $('#pitch_id').append('<option value="" selected>Chọn sân</option>');
+                            $.each(data, function (key, pitches) {
+                                $('#pitch_id').append('<option value="' + pitches.id + '">' + pitches.pitch_number + '</option>');
+                            });
+                        } else {
+                            $('#pitch_id').empty();
+                        }
+                    }
+                });
+            } else {
+                $('#pitch_id').empty();
+            }
+        });
+    });
+</script>
 <script src="jquery.min.js"></script>
 <script>
     // Lấy ngày hôm nay và định dạng nó thành yyyy-MM-dd

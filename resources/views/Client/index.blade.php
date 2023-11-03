@@ -29,6 +29,38 @@
     <link rel="stylesheet" type="text/css" media="screen" href="{{asset('themes/football/css/slimmenuf361.css?t=1696324888')}}" />
     <link type="text/css" href="{{asset('js/jquery-ui/jquery-ui.minf361.css?t=1696324888')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/client.css')}}">
+    <style>
+        body {
+            padding: 2%;
+            text-align: center;
+        }
+
+        #slideshow {
+            overflow: hidden;
+            height: 510px;
+            width: 728px;
+            margin: 0 auto;
+        }
+
+        .slide-wrapper {
+            width: 2912px;
+            -webkit-animation: slide 14s ease infinite;
+        }
+
+        .slide {
+            float: left;
+            height: 510px;
+            width: 728px;
+        }
+
+        @-webkit-keyframes slide {
+            20% {margin-left: 0px;}
+            30% {margin-left: -728px;}
+            50% {margin-left: -728px;}
+            60% {margin-left: -1456px;}
+            80% {margin-left: -1456px;}
+        }
+    </style>
 </head>
 
 <body>
@@ -87,7 +119,115 @@
                 </div>
                 <div>
                     <div class="row">
-                        <div class="col-sm-18 col-md-19 col-sm-push-6 col-md-push-5" id="col-right">
+                        <div class="col-sm-18 col-md-19 col-sm-push-6 col-md-push-3" id="col-right">
+                            <div class="wpb_text_column wpb_content_element  vc_custom_1468573977483">
+                                <div class="wpb_wrapper">
+                                    <blockquote>
+                                        <h1>
+                                            BoDeStadium cung cấp dịch vụ cho thuê sân bóng đá theo giờ, theo hợp đồng, tổ chức các sự kiện, hội thao thể thao tại Sân bóng đá cỏ nhân tạo .
+                                        </h1>
+                                    </blockquote>
+                                </div>
+                            </div>
+                            <div class="wpb_gallery wpb_content_element  vc_custom_1468575924016 vc_clearfix">
+                                <div class="wpb_wrapper">
+                                    <div id="slideshow">
+                                        <div class="slide-wrapper">
+                                            <div class="slide">
+                                                <img src="{{asset('images/san/Sân 1.jpg')}}">
+                                            </div>
+                                            <div class="slide">
+                                                <img src="{{asset('images/san/Sân 2.jpg')}}">
+                                            </div>
+                                            <div class="slide">
+                                                <img src="{{asset('images/san/Sân 3.jpg')}}">
+                                            </div>
+                                            <div class="slide">
+                                                <img src="{{asset('images/san/Sân 4.jpg')}}">
+                                            </div>
+                                            <div class="slide">
+                                                <img src="{{asset('images/san/Sân 5.jpg')}}">
+                                            </div>
+                                            <div class="slide">
+                                                <img src="{{asset('images/san/Sân 6.jpg')}}">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <br>
+                            <div class="wpb_text_column wpb_content_element  vc_custom_1533109668412">
+                                <div class="wpb_wrapper">
+                                    <h2>GIỚI THIỆU VỀ DỊCH VỤ CHO THUÊ SẤN BÓNG ĐÁ CỎ NHÂN TẠO</h2>
+                                    <ul>
+                                        <li style="text-align: justify;">Hệ thống sân bóng đá được đầu tư xây dựng hiện đại, đáp ứng các tiêu chuẩn công nghệ của Châu Âu. Cỏ nhân tạo được nhập khẩu từ Ý và Mỹ  với những ưu thế như mềm, độ nẩy thấp, cỏ được trám đều đảm bảo độ chuẩn xác của đường chuyền, lăn&#8230;</li>
+                                        <li style="text-align: justify;">Hệ thống đèn chiếu sáng chuyên dụng, cung cấp đầy đủ ánh sáng cho cá trận bóng sôi động và hào hứng mỗi đêm.</li>
+                                        <li style="text-align: justify;">Không gian sân bóng rộng rãi, thoáng đãng. Có bãi đỗ xe ô tô và xe máy rộng rãi, mát mẽ, an toàn.</li>
+                                        <li style="text-align: justify;">Bên cạnh đó còn có căng tin cung cấp dịch vụ phục vụ nước giải khát, vui chơi giải trí cho các khách hàng trước và sau khi chơi bóng.</li>
+                                    </ul>
+                                    <p style="text-align: justify;">Tất cả đã tạo nên một hệ thống sân thi đấu hiện đại và chất lượng. Đến với Sân bóng đá mini cỏ nhân tạo Dốc Sỏi, các bạn sẽ thấy được sự khác biệt, không gian và tầm nhìn thông thoáng, rộng rãi là điều kiện thích hợp để thi đấu thể thao và giải trí sau một ngày làm việc mệt nhọc.</p>
+                                    <hr />
+
+                                </div>
+                            </div>
+
+                            <div class="wpb_text_column wpb_content_element  vc_custom_1468576987640">
+                                <div class="wpb_wrapper">
+                                    <h2>KHUNG GIỜ HOẠT ĐỘNG THUẬN TIỆN</h2>
+                                    <ul>
+                                        <li style="text-align: justify;">Bắt đầu từ <strong>06h00</strong> và kết thúc vào <strong>23h30</strong> hằng ngày, kể cả ngày lễ, chủ nhật.</li>
+                                        <li style="text-align: justify;">Thời gian cho thuê sân được tính theo block 1 giờ 30 phút.</li>
+                                        <li style="text-align: justify;">Khung giờ như trên đáp ứng gần như mọi nhu cầu về thời gian chơi bóng của quý khách hàng.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="wpb_text_column wpb_content_element  vc_custom_1468638031880">
+                                <div class="wpb_wrapper">
+                                    <h2>BẢNG GIÁ THUÊ SÂN BÓNG</h2>
+                                    <table id="tablepress-1" class="table table-striped table-bordered" >
+                                        <thead>
+                                        <tr class="row-1 odd">
+                                            <th class="column-1">Khung giờ</th>
+                                            <th class="column-2">Giá sân 7 người</th>
+                                            <th class="column-4">Giá sân 9 người</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="row-hover">
+                                        <tr class="row-2 even">
+                                            <td class="column-1"></td>
+                                            <td class="column-2">Thứ 2 - CN</td>
+                                            <td class="column-3">Thứ 2 - CN</td>
+                                        </tr>
+                                        <tr class="row-3 odd">
+                                            <td class="column-1">06:00 - 09:00</td>
+                                            <td class="column-2">300.000 VND</td>
+                                            <td class="column-3">550.000 VND</td>
+                                        </tr>
+                                        <tr class="row-4 even">
+                                            <td class="column-1">09:00 - 16:30</td>
+                                            <td class="column-2">250.000 VND</td>
+                                            <td class="column-3">500.000 VND</td>
+
+                                        </tr>
+                                        <tr class="row-5 odd">
+                                            <td class="column-1">16:30 - 21:00</td>
+                                            <td class="column-2">550.000 VND</td>
+                                            <td class="column-3">800.000 VND</td>
+
+                                        </tr>
+                                        <tr class="row-6 even">
+                                            <td class="column-1">21:00 - 24:00</td>
+                                            <td class="column-2">400.000 VND</td>
+                                            <td class="column-3">650.000 VND</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <p style="text-align: justify;">Giá trên đã bao gồm 10% VAT.</p>
+                                </div>
+                            </div>
+
                             <div class="col-sm-6 col-md-5 col-sm-pull-18 col-md-pull-19">
                                 <div class="row">
                                     <div class="fixed-right">

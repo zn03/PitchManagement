@@ -24,7 +24,7 @@ class StorePitchTypeRequest extends FormRequest
     public function rules()
     {
         return [
-            'pitchtype_name' => ['required', 'max:10', 'unique:pitchtypes,pitchtype_name,'],
+            'pitchtype_name' => ['required', 'max:10', 'unique:pitch_types,pitchtype_name,'],
             'pitchtype_price' => ['required','numeric','min:0'],
 
         ];

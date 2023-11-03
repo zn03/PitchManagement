@@ -45,6 +45,8 @@ Route::middleware('checkLoginStaff')->prefix('Admin/pitch_types/')->group(functi
     Route::get('/{pitchType}/edit', [\App\Http\Controllers\PitchTypeController::class, 'edit'])->name('pitch_types.edit');
     Route::put('/{pitchType}/edit', [\App\Http\Controllers\PitchTypeController::class, 'update'])->name('pitch_types.update');
     Route::delete('/{pitchType}/destroy', [\App\Http\Controllers\PitchTypeController::class, 'destroy'])->name('pitch_types.destroy');
+
+
 });
 
 Route::middleware('checkLoginStaff')->prefix('Admin/timelines/')->group(function(){
@@ -69,6 +71,8 @@ Route::middleware('checkLoginStaff')->prefix('Admin/bookings/')->group(function(
     Route::get('{booking_id}/inProgess', [\App\Http\Controllers\BookingController::class, 'inProgess'])->name('bookings.inProgess');
     Route::get('{booking_id}/completeBooking', [\App\Http\Controllers\BookingController::class, 'completeBooking'])->name('bookings.completeBooking');
     Route::get('{booking_id}/cancelBooking', [\App\Http\Controllers\BookingController::class, 'cancelBooking'])->name('bookings.cancelBooking');
+
+    Route::get('/getPitch/{id}',[\App\Http\Controllers\BookingController::class, 'getPitch'])->name('bookings.getPitch');
 });
 
 Route::middleware('checkLoginStaff')->get('Admin/dashboard',[\App\Http\Controllers\DashBoardController::class, 'index'] )->name('dashboard.index');
@@ -77,8 +81,11 @@ Route::prefix('Client/')->group(function(){
     Route::get('index',[\App\Http\Controllers\ClientIndexController::class, 'index'] )->name('client.index');
     Route::get('about',[\App\Http\Controllers\ClientAboutController::class, 'index'] )->name('client.about');
     Route::get('contact',[\App\Http\Controllers\ClientContactController::class, 'index'] )->name('client.contact');
+
     Route::get('booking',[\App\Http\Controllers\ClientBookingController::class, 'create'] )->name('client.booking');
     Route::post('booking',[\App\Http\Controllers\ClientBookingController::class, 'store'] )->name('booking.store');
+    Route::get('booking/getPitch/{id}',[\App\Http\Controllers\ClientBookingController::class, 'getPitch'])->name('booking.getPitch');
+
     Route::get('news',[\App\Http\Controllers\ClientNewsController::class, 'index'] )->name('client.news');
 
     Route::get('/searchBooking', [\App\Http\Controllers\ClientIndexController::class, 'searchBooking'])->name('client.searchBooking');

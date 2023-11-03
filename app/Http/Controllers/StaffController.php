@@ -7,6 +7,7 @@ use App\Http\Requests\StoreStaffRequest;
 use App\Http\Requests\UpdateStaffRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 
 class StaffController extends Controller
@@ -44,7 +45,13 @@ class StaffController extends Controller
     public function store(StoreStaffRequest $request)
     {
          if ($request->validated()) {
-            Staff::create($request->all());
+             Staff::create([
+                 'staff_name' => $request->staff_name,
+                 'staff_address' => $request->staff_address,
+                 'staff_phone' => $request->staff_phone,
+                 'email' => $request->email,
+                 'password' =>  Hash::make($request->password),
+             ]);
             flash()->addSuccess('Thêm mới thành công');
             return Redirect::route('staffs.index');
         } else {
@@ -87,7 +94,13 @@ class StaffController extends Controller
     public function update(UpdateStaffRequest $request, Staff $staff)
     {
         if ($request->validated()) {
-            $staff->update($request->all());
+            $staff->update([
+                'staff_name' => $request->staff_name,
+                'staff_address' => $request->staff_address,
+                'staff_phone' => $request->staff_phone,
+                'email' => $request->email,
+                'password' =>  Hash::make($request->password),
+            ]);
             flash()->addSuccess('Cập nhật thành công');
             return Redirect::route('staffs.index');
         } else {

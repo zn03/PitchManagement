@@ -29,6 +29,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="{{asset('themes/football/css/slimmenuf361.css?t=1696324888')}}" />
     <link type="text/css" href="{{asset('js/jquery-ui/jquery-ui.minf361.css?t=1696324888')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/client.css')}}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -124,6 +125,31 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
+                                                <label class="col-sm-6 control-label">Loại Sân <span class="text-danger">(*)</span>:</label>
+                                                <div class="col-sm-18 col-lg-12">
+                                                    <div class="form-inline">
+                                                        <select name="pitch_types" id="pitch_types" class="form-control">
+                                                            <option value="">Chọn Loại Sân</option>
+                                                            @foreach($pitchTypes as $pitchType)
+                                                                <option value="{{$pitchType->id}}">
+                                                                    {{$pitchType->pitchtype_name}}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-6 control-label">Chọn sân <span class="text-danger">(*)</span>:</label>
+                                            <div class="col-sm-18 col-lg-12">
+                                                <div class="form-inline">
+                                                    <select name="pitch_id" id="pitch_id" class="form-control">
+                                                        <option value="">Chọn sân</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
                                             <label class="col-sm-6 control-label">Ngày đặt <span class="text-danger">(*)</span>:</label>
                                             <div class="col-sm-18 col-lg-12">
                                                 <input type="date" name="booking_date" id="booking_date" class="form-control d-inline-block w-120 mr-1" maxlength="10">
@@ -142,20 +168,6 @@
                                                         </option>
                                                     @endforeach
                                                 </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-6 control-label">Chọn sân <span class="text-danger">(*)</span>:</label>
-                                            <div class="col-sm-18 col-lg-12">
-                                                <div class="form-inline">
-                                                    <select name="pitch_id" id="pitch_id" class="form-control">
-                                                        @foreach($pitches as $pitch)
-                                                            <option value="{{$pitch->id}}">
-                                                                {{$pitch->pitch_number}} - Loại Sân: {{$pitch->pitchType->pitchtype_name}}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -231,7 +243,36 @@
         </div>
     </nav>
 </div>
+
 <script src="jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#pitch_types').on('change', function () {
+            var pitch_type_id = $(this).val();
+            if (pitch_type_id) {
+                $.ajax({
+                    url: 'booking/getPitch/' + pitch_type_id,
+                    type: "GET",
+                    data: {"_token": "{{ csrf_token() }}"},
+                    dataType: "json",
+                    success: function (data) {
+                        if (data) {
+                            $('#pitch_id').empty();
+                            $('#pitch_id').append('<option value="" selected>Chọn sân</option>');
+                            $.each(data, function (key, pitches) {
+                                $('#pitch_id').append('<option value="' + pitches.id + '">' + pitches.pitch_number + '</option>');
+                            });
+                        } else {
+                            $('#pitch_id').empty();
+                        }
+                    }
+                });
+            } else {
+                $('#pitch_id').empty();
+            }
+        });
+    });
+</script>
 <script>
     // Lấy ngày hôm nay và định dạng nó thành yyyy-MM-dd
     const today = new Date();

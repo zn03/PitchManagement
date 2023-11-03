@@ -11,6 +11,7 @@ use App\Models\Pitch;
 use App\Models\PitchType;
 use App\Models\Staff;
 use App\Models\Timeline;
+use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -25,6 +26,7 @@ class BookingController extends Controller
      */
     public function index()
     {
+
         $pitches = Pitch::all();
         $bookings = DB::table('bookings')
             ->join('booking_details', 'bookings.id', '=', 'booking_details.booking_id')
@@ -35,7 +37,6 @@ class BookingController extends Controller
             ->join('staffs', 'staffs.id', '=', 'bookings.staff_id')
             ->select('bookings.*', 'booking_details.*', 'pitches.*', 'pitch_types.*', 'timelines.*', 'customers.*', 'staffs.*')
             ->orderBy('bookings.id', 'desc')
-            ->limit(8)
             ->get();
 
         $formattedBookings = [];
@@ -47,6 +48,8 @@ class BookingController extends Controller
         return view('Admin.bookings.index', [
             'bookings' => $bookings,
             'pitches' => $pitches,
+
+
         ]);
     }
     /**
@@ -56,6 +59,7 @@ class BookingController extends Controller
      */
     public function create()
     {
+        $pitchTypes = PitchType::all();
         $pitches = Pitch::all();
         $timelines = Timeline::all();
         $staffs = Staff::all();
@@ -64,6 +68,7 @@ class BookingController extends Controller
             'pitches' => $pitches,
             'timelines' => $timelines,
             'staffs'=> $staffs,
+            'pitchTypes' => $pitchTypes,
         ]);
     }
 
@@ -246,15 +251,25 @@ class BookingController extends Controller
 
             ]);
     }
-    public function confirm(Booking $booking_id){
+    public function confirm(Booking $booking_id, Pitch $pitch){
         Booking::where('id', $booking_id->id)->update(['booking_status' => 1]);
+        Pitch::join('booking_details', 'booking_details.pitch_id', '=', 'pitches.id')
+            ->where('booking_details.booking_id', $booking_id->id)
+            ->update(['pitch_status' => 1]);
         return Redirect::route('bookings.detail', $booking_id->id);
     }
     public function inProgess(Booking $booking_id){
+
         Booking::where('id', $booking_id->id)->update(['booking_status' => 2]);
+        Pitch::join('booking_details', 'booking_details.pitch_id', '=', 'pitches.id')
+            ->where('booking_details.booking_id', $booking_id->id)
+            ->update(['pitch_status' => 2]);
         return Redirect::route('bookings.detail', $booking_id->id);
     }
     public function completeBooking(Booking $booking_id){
+        Pitch::join('booking_details', 'booking_details.pitch_id', '=', 'pitches.id')
+            ->where('booking_details.booking_id', $booking_id->id)
+            ->update(['pitch_status' => 3]);
         Booking::where('id', $booking_id->id)->update(['booking_status' => 3]);
         return Redirect::route('bookings.detail', $booking_id->id);
 
@@ -262,5 +277,12 @@ class BookingController extends Controller
     public function cancelBooking(Booking $booking_id){
         Booking::where('id', $booking_id->id)->update(['booking_status' => 4]);
         return Redirect::route('bookings.detail', $booking_id->id);
+    }
+
+    public function getPitch( Request $request ): \Illuminate\Http\JsonResponse
+    {
+        $id = $request -> id;
+        $pitches = Pitch::where('pitch_type_id', $id)->get();
+        return response()->json($pitches);
     }
 }

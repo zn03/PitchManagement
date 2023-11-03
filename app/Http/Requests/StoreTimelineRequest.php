@@ -26,7 +26,7 @@ class StoreTimelineRequest extends FormRequest
         return [
             'timeline_start' => ['required', 'before:timeline_end', 'unique:timelines,timeline_start,' ],
             'timeline_end' => ['required', 'after:timeline_start', 'unique:timelines,timeline_end,'],
-            'timeline_price'=>['required','numeric'],
+            'timeline_price'=>['required','numeric', 'min:0'],
         ];
     }
 
@@ -41,6 +41,7 @@ class StoreTimelineRequest extends FormRequest
             'timeline_end.unique' => 'Thời gian kết thúc đã tồn tại',
             'timeline_price.required' => 'Vui lòng nhập giá sân',
             'timeline_price.numeric' => 'Giá sân phải là số',
+            'timeline_price.min' => 'Giá sân phải lớn hơn 0',
 
         ];
     }

@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="{{asset('css/admin.css')}}">
     <link rel="stylesheet" href="{{asset('css/fontawesome-free-6.4.2-web/css/all.min.css')}}">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css">
+
     <script type="text/javascript">
         //Phân Trang Cho Table
         function Pager(tableName, itemsPerPage) {
@@ -141,7 +142,7 @@
         <table class="table table-striped table-bordered" id="myTable">
             <thead>
             <tr class="ex">
-{{--                <th width="auto">ID</th>--}}
+                <th width="auto">ID</th>
                 <th width="auto">Tên Khách Hàng</th>
                 <th width="auto">Tên Đội Bóng</th>
                 <th width="auto">Sân Số</th>
@@ -156,9 +157,9 @@
             @foreach($bookings as $booking)
 
                 <tr>
-{{--                    <td>--}}
-{{--                        {{ $booking->booking_id }}--}}
-{{--                    </td>--}}
+                    <td>
+                        {{ $booking->booking_id }}
+                    </td>
                     <td>
                         {{ $booking->customer_name}}
                     </td>
@@ -203,7 +204,6 @@
             </tbody>
         </table>
     </div>
-
     <div id="pageNavPosition" class="text-right"></div>
     <script type="text/javascript">
         var pager = new Pager('myTable', 8);
